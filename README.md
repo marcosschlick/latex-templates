@@ -1,6 +1,6 @@
 # LaTeX Templates
 
-A small collection of LaTeX templates for CVs, research papers, and presentations.
+A small collection of LaTeX templates for CVs, lesson plans, research papers, and presentations.
 
 ## CV Templates
 
@@ -23,6 +23,18 @@ An academic CV template for researchers, students, and faculty.
 [Source](cv/academic) · [Download ZIP](https://github.com/marcosschlick/latex-templates/releases/latest/download/cv_academic.zip)
 
 [![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2Fmarcosschlick%2Flatex-templates%2Freleases%2Flatest%2Fdownload%2Fcv_academic.zip)
+
+## Lesson Plans
+
+### Lesson Plan
+
+<img src="lesson-plan/preview.png" alt="Lesson plan template preview" width="360">
+
+A two-page lesson plan template with section headings in English, Brazilian Portuguese, or Spanish.
+
+[Source](lesson-plan) · [Download ZIP](https://github.com/marcosschlick/latex-templates/releases/latest/download/lesson_plan.zip)
+
+[![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2Fmarcosschlick%2Flatex-templates%2Freleases%2Flatest%2Fdownload%2Flesson_plan.zip)
 
 ## Research Papers
 
