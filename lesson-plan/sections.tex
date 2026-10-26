@@ -1,4 +1,12 @@
 % Section titles follow the selected language; lesson content remains in English.
+\newcommand{\lessondate}{2026-10-23}
+\def\formatlessondate#1-#2-#3\relax{%
+  \begingroup
+  \year=#1\relax \month=#2\relax \day=#3\relax
+  \today
+  \endgroup
+}
+\newcommand{\displaylessondate}{\expandafter\formatlessondate\lessondate\relax}
 \newcommand{\identificationtitle}{%
   \iflessonlanguage{brazilian}{DADOS DE IDENTIFICAÇÃO}{%
     \iflessonlanguage{spanish}{DATOS DE IDENTIFICACIÓN}{IDENTIFICATION}%
@@ -18,7 +26,7 @@
     \textbf{DISCIPLINA:} Ethics and Civic Responsibility\par
     \textbf{PROFESSOR(A):} Peter Parker (Spider-Man)\par
     \textbf{SALA:} Avengers Academy Simulation Room\par
-    \textbf{DATA:} Friday, October 23, 2026\par
+    \textbf{DATA:} \displaylessondate\par
     \textbf{HORÁRIO / DIA DA SEMANA:} 2:15--2:45 p.m. / Friday\par
     \textbf{DURAÇÃO:} 30 minutes
   }{\iflessonlanguage{spanish}{%
@@ -29,7 +37,7 @@
     \textbf{ASIGNATURA:} Ethics and Civic Responsibility\par
     \textbf{PROFESOR(A):} Peter Parker (Spider-Man)\par
     \textbf{AULA:} Avengers Academy Simulation Room\par
-    \textbf{FECHA:} Friday, October 23, 2026\par
+    \textbf{FECHA:} \displaylessondate\par
     \textbf{HORA / DÍA DE LA SEMANA:} 2:15--2:45 p.m. / Friday\par
     \textbf{DURACIÓN:} 30 minutes
   }{%
@@ -40,7 +48,7 @@
     \textbf{SUBJECT:} Ethics and Civic Responsibility\par
     \textbf{INSTRUCTOR:} Peter Parker (Spider-Man)\par
     \textbf{ROOM:} Avengers Academy Simulation Room\par
-    \textbf{DATE:} Friday, October 23, 2026\par
+    \textbf{DATE:} \displaylessondate\par
     \textbf{TIME / DAY OF THE WEEK:} 2:15--2:45 p.m. / Friday\par
     \textbf{DURATION:} 30 minutes
   }}%
