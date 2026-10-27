@@ -42,7 +42,15 @@ Coming soon.
 
 ## Presentations
 
-Coming soon.
+### Light Presentation
+
+<img src="presentations/light/preview.png" alt="Light presentation preview" width="360">
+
+A 16:9 Beamer template with multilingual section labels and optional speaker notes.
+
+[Source](presentations/light) · [Download ZIP](https://github.com/marcosschlick/latex-templates/releases/latest/download/presentation_light.zip)
+
+[![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?snip_uri=https%3A%2F%2Fgithub.com%2Fmarcosschlick%2Flatex-templates%2Freleases%2Flatest%2Fdownload%2Fpresentation_light.zip)
 
 ## License
 
