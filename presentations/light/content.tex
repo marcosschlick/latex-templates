@@ -1,0 +1,241 @@
+% Shared titles: update each definition to change both the TOC and first slide title.
+\newcommand{\lossestitle}{The Night Asgard Lost Its King}
+\newcommand{\sakaartitle}{Cast Out by the Bifrost}
+\newcommand{\decisionstitle}{The Price of the Road Home}
+\newcommand{\prioritiestitle}{Asgard Is Its People}
+\newcommand{\returntitle}{The Road Home Ends in Fire}
+\newcommand{\modeltitle}{A Tally of the Survivors}
+
+{
+    \setbeamertemplate{footline}{}
+    \begin{frame}[plain,noframenumbering]
+        \titlepage
+        \note{Introduce the story as a journey from Asgard's fall to the survival of its people.}
+    \end{frame}
+}
+
+\begin{frame}{\contentslabel}{From the fall of Asgard to the flight of its people}
+    \tableofcontents[subsectionstyle=show]
+    \note{Preview the move from exile to the Asgardians' escape.}
+\end{frame}
+
+\section{The Fall and Exile}
+\subsection{\lossestitle}
+\begin{frame}{\lossestitle}{Odin's death, Mjölnir's fall, and Hela's return}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{0.40\textwidth}
+            \begin{itemize}
+                \item \textbf{Odin} is gone; the Allfather's reign has ended.
+                \item \textbf{Mjölnir} lies shattered, and Thor's certainty with it.
+                \item \textbf{Hela} claims the throne and casts Asgard into shadow.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.54\textwidth}
+            \begin{figure}
+                \centering
+                % Scale to the specified height and crop any horizontal overflow.
+                \presentationimage{assets/hela_mjolnir.jpg}{4.2cm}{\linewidth}
+                \caption{Hela catches Mjölnir.}
+            \end{figure}
+        \end{column}
+    \end{columns}
+    \note{Thor loses Odin, Mjölnir, and his place in Asgard.}
+\end{frame}
+
+\subsection{\sakaartitle}
+\begin{frame}{\sakaartitle}{Thor's fall into the Grandmaster's arena}
+    \begin{figure}
+        \centering
+        % Scale to the specified height and crop any horizontal overflow.
+        \presentationimage{assets/thor_hulk_arena.jpg}{5.2cm}{0.95\linewidth}
+        \caption{Thor faces the Hulk in Sakaar's arena.}
+    \end{figure}
+    \note{Thor's exile on Sakaar gives him a new path back.}
+\end{frame}
+
+\begin{frame}{A Kingdom Can Fall. Its People Can Live.}{A kingdom and its people are not the same thing}
+    \begin{figure}
+        \centering
+        \begin{subfigure}[t]{0.46\linewidth}
+            \vspace{0pt}
+            \centering
+            % Both paired images use the same height and width limits.
+            \presentationimage{assets/thor_sakaar.jpg}{3.8cm}{\linewidth}
+            \caption{Thor surveys Sakaar.}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.46\linewidth}
+            \vspace{0pt}
+            \centering
+            \presentationimage{assets/thor_loki_alliance.jpg}{3.8cm}{\linewidth}
+            \caption{Loki's uneasy alliance opens a path home.}
+        \end{subfigure}
+        \caption{On Sakaar, the brothers find a way back to the people under Hela's rule.}
+    \end{figure}
+    \note{The brothers turn exile into a chance to help their people.}
+\end{frame}
+
+\subsubsection{Brothers at a Crossroads}
+\begin{frame}{Brothers at a Crossroads}{Old betrayals shadow their alliance}
+    \begin{figure}
+        \centering
+        % Scale to the specified height and crop any horizontal overflow.
+        \presentationimage{assets/thor_loki_elevator.jpg}{5.2cm}{0.95\linewidth}
+        \caption{Thor knows Loki may still choose his own escape.}
+    \end{figure}
+    \note{Loki begins to choose alliance over his own escape.}
+\end{frame}
+
+\subsection{\decisionstitle}
+\begin{frame}{\decisionstitle}{Three losses and the choice to return}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.30\textwidth}
+            \textbf{What Was Lost}
+            \begin{itemize}
+                \item Odin, his father
+                \item Mjölnir, his weapon
+                \item Asgard under Hela's rule
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.30\textwidth}
+            \textbf{The Road Back}
+            \begin{enumerate}
+                \item Survive Sakaar
+                \item Find Loki again
+                \item Return to Asgard
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.30\textwidth}
+            \textbf{The Choice}
+            \begin{description}
+                \item[Thor] \keyphrase{Save the people}
+                \item[Loki] Return with them
+                \item[People] Escape Asgard
+            \end{description}
+        \end{column}
+    \end{columns}
+    \note{Thor chooses to save Asgard's people even if the kingdom is lost.}
+\end{frame}
+
+\begin{frame}{The Road to Exodus}{From Asgard's fall to the survivors' escape}
+    \centering
+    \begin{tikzpicture}[
+            stage/.style={draw=softblack,align=center,minimum width=3cm,minimum height=1cm},
+            every node/.style={font=\small}]
+        \node[stage] (loss) {Fall\\Asgard};
+        \node[stage,right of=loss,node distance=4cm] (exile) {Exile\\Sakaar};
+        \node[stage,final stage,right of=exile,node distance=4cm] (return) {Ragnarok\\The people escape};
+        \draw[progress arrow] (loss) -- (exile);
+        \draw[progress arrow] (exile) -- (return);
+    \end{tikzpicture}
+    \note{Trace the journey from Asgard through Sakaar to the escape.}
+\end{frame}
+
+\section{Thor's Choice}
+{
+    \setbeamertemplate{frametitle}{}
+    \begin{frame}
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[inner sep=0pt,font=\LARGE] at (current page.center) {The people come first.};
+        \end{tikzpicture}
+        \note{Thor chooses to put the Asgardians first.}
+    \end{frame}
+}
+
+\subsection{\prioritiestitle}
+\begin{frame}{\prioritiestitle}
+    \centering
+    {\Large Asgard is not its golden halls. \keyphrase{It is its people.}\par}
+    \medskip
+    {\footnotesize From the royal archives: \citet{lore_thor,lore_loki,lore_asgard}.\par}
+    \note{Emphasize that Asgard lives through its people.}
+\end{frame}
+
+\begin{frame}{A King Without a Kingdom}{Thor learns that Asgard lives on in its people}
+    \begin{table}
+        \centering
+        \caption{The path from Hela's return to the people's escape.}
+        \setlength\extrarowheight{4pt}
+        \begin{tabularx}{\linewidth}{lYY}
+            \toprule
+            \rowcolor{offwhite}
+            \textbf{Stage} & \textbf{Disruption} & \textbf{Response}\\
+            \midrule
+            Asgard & Odin is dead; Mjölnir is shattered; Hela returns & Face the fall\\
+            Sakaar & Exile in the Grandmaster's arena & Gather allies\\
+            Return & Hela rules Asgard & Bring the people to safety\\
+            \midrule
+            \highlightrow
+            Resolution & Asgard falls to Ragnarok & Carry its people into the stars\\
+            \bottomrule
+        \end{tabularx}
+    \end{table}
+    \note{Follow how each setback leads toward the people's escape.}
+\end{frame}
+
+\subsection{\returntitle}
+\begin{frame}{\returntitle}{The choice that saves the Asgardians}
+    \begin{block}{The Loss}
+        Odin is gone. Mjölnir is shattered. Hela rules Asgard.
+    \end{block}
+    \begin{alertblock}{The Alliance}
+        On Sakaar, Thor joins forces with Loki, Valkyrie, and the Hulk.
+    \end{alertblock}
+    \begin{exampleblock}{The Choice}
+        Thor sends Loki to awaken Surtur, accepting Asgard's fall so its people can escape.\footnote{A chronicle of Asgard's fall and the people's escape.}
+    \end{exampleblock}
+    \medskip
+    From the royal archives: \citet{lore_thor}.
+    \note{Thor's choice gives the Asgardians a chance to escape.}
+\end{frame}
+
+\subsection{\modeltitle}
+\begin{frame}[fragile]{\modeltitle}{An imagined count of those who escaped}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{0.46\textwidth}
+            \begin{Verbatim}[fontsize=\footnotesize]
+def protected_fraction(p, N):
+    if N <= 0 or p < 0 or p > N:
+        raise ValueError("Bad input")
+    return p / N
+
+saved, total = 75, 100
+fraction = protected_fraction(saved, total)
+print(f"Saved: {fraction:.0%}")
+      \end{Verbatim}
+        \end{column}
+        \begin{column}{0.46\textwidth}
+            \textbf{This imagined tally} records the Asgardians who reach safety.
+
+            \medskip
+            This is an imagined count, not a number given in the chronicle:
+            \[
+                r=\frac{p}{N},\qquad N>0,\quad 0\leq p\leq N.
+            \]
+        \end{column}
+    \end{columns}
+    \note{The 75 percent figure is an imagined example, not a historical count.}
+\end{frame}
+
+\begin{frame}{A Narrowing Window to Escape}{A hypothetical account of the flight from Asgard}
+    This imagined model estimates the chance of getting the Asgardians to safety:
+    \begin{equation}
+        P(E)=\frac{1}{1+\exp[-(\alpha C-\gamma D)]},\qquad \alpha,\gamma>0.
+    \end{equation}
+    Here, $C$ is available transport capacity and $D$ is the time lost before the escape begins.
+    This model is imagined; the chronicle gives no exact evacuation data.
+
+    \medskip
+    Greater transport capacity and an earlier escape give more Asgardians a chance to survive Surtur's fire.
+    \note{More transport and less delay improve the chance of escape in this imagined model.}
+\end{frame}
+
+\section{\referenceslabel}
+\setbeamertemplate{frametitle continuation}[from second]
+\begin{frame}[allowframebreaks]{\referenceslabel}{Records of Asgard's fall and the survivors' flight}
+    \footnotesize
+    \renewcommand{\bibsection}{}
+    \bibliographystyle{plainnat}
+    \bibliography{references}
+    \note{Point to the sources listed here for the chronicle.}
+\end{frame}

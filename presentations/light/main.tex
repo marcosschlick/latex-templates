@@ -1,0 +1,23 @@
+\newif\ifnotes
+\ifdefined\notesversion
+    \notestrue
+\else
+    \notesfalse
+\fi
+
+\documentclass[10pt,aspectratio=169,notheorems,usepdftitle=false]{beamer}
+% Edit metadata.tex and content.tex to personalize the presentation.
+\input{preamble.tex}
+\input{metadata.tex}
+\hypersetup{pdftitle={\inserttitle}}
+
+\begin{document}
+
+% Choose the language after the document starts. Keep only one line active.
+\selectlanguage{english}
+% \selectlanguage{brazilian}
+% \selectlanguage{spanish}
+
+\input{content.tex}
+
+\end{document}
