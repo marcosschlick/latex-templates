@@ -1,95 +1,113 @@
+% Localized section labels and identification fields.
 % Section titles follow the selected language; lesson content remains in English.
+
+% Format the ISO lesson date according to the active Babel language.
 \newcommand{\lessondate}{2026-10-23}
 \def\formatlessondate#1-#2-#3\relax{%
-  \begingroup
-  \year=#1\relax \month=#2\relax \day=#3\relax
-  \today
-  \endgroup
+    \begingroup
+    \year=#1\relax \month=#2\relax \day=#3\relax
+    \today
+    \endgroup
 }
 \newcommand{\displaylessondate}{\expandafter\formatlessondate\lessondate\relax}
+
+% Localized header labels and section titles.
 \newcommand{\identificationtitle}{%
-  \iflessonlanguage{brazilian}{DADOS DE IDENTIFICAÇÃO}{%
-    \iflessonlanguage{spanish}{DATOS DE IDENTIFICACIÓN}{IDENTIFICATION}%
-  }%
+    \iflessonlanguage{brazilian}{DADOS DE IDENTIFICAÇÃO}{%
+        \iflessonlanguage{spanish}{DATOS DE IDENTIFICACIÓN}{IDENTIFICATION}%
+    }%
 }
+
 \newcommand{\instructorlabel}{%
-  \iflessonlanguage{brazilian}{Professor(a):}{%
-    \iflessonlanguage{spanish}{Profesor(a):}{Instructor:}%
-  }%
+    \iflessonlanguage{brazilian}{Professor(a):}{%
+        \iflessonlanguage{spanish}{Profesor(a):}{Instructor:}%
+    }%
 }
+
+% Identification fields with localized labels.
 \newcommand{\identificationfields}{%
-  \iflessonlanguage{brazilian}{%
-    \textbf{INSTITUIÇÃO:} Avengers Academy, New York Training Center\par
-    \textbf{CURSO:} New Recruit Orientation\par
-    \textbf{SEMESTRE:} Fall 2026\par
-    \textbf{TURMA:} Team Alpha\par
-    \textbf{DISCIPLINA:} Ethics and Civic Responsibility\par
-    \textbf{PROFESSOR(A):} Peter Parker (Spider-Man)\par
-    \textbf{SALA:} Avengers Academy Simulation Room\par
-    \textbf{DATA:} \displaylessondate\par
-    \textbf{HORÁRIO / DIA DA SEMANA:} 2:15--2:45 p.m. / Friday\par
-    \textbf{DURAÇÃO:} 30 minutes
-  }{\iflessonlanguage{spanish}{%
-    \textbf{INSTITUCIÓN:} Avengers Academy, New York Training Center\par
-    \textbf{CURSO:} New Recruit Orientation\par
-    \textbf{SEMESTRE:} Fall 2026\par
-    \textbf{GRUPO:} Team Alpha\par
-    \textbf{ASIGNATURA:} Ethics and Civic Responsibility\par
-    \textbf{PROFESOR(A):} Peter Parker (Spider-Man)\par
-    \textbf{AULA:} Avengers Academy Simulation Room\par
-    \textbf{FECHA:} \displaylessondate\par
-    \textbf{HORA / DÍA DE LA SEMANA:} 2:15--2:45 p.m. / Friday\par
-    \textbf{DURACIÓN:} 30 minutes
-  }{%
-    \textbf{INSTITUTION:} Avengers Academy, New York Training Center\par
-    \textbf{COURSE:} New Recruit Orientation\par
-    \textbf{SEMESTER:} Fall 2026\par
-    \textbf{CLASS:} Team Alpha\par
-    \textbf{SUBJECT:} Ethics and Civic Responsibility\par
-    \textbf{INSTRUCTOR:} Peter Parker (Spider-Man)\par
-    \textbf{ROOM:} Avengers Academy Simulation Room\par
-    \textbf{DATE:} \displaylessondate\par
-    \textbf{TIME / DAY OF THE WEEK:} 2:15--2:45 p.m. / Friday\par
-    \textbf{DURATION:} 30 minutes
-  }}%
+    \iflessonlanguage{brazilian}{%
+        \textbf{INSTITUIÇÃO:} Avengers Academy, New York Training Center\par
+        \textbf{CURSO:} New Recruit Orientation\par
+        \textbf{SEMESTRE:} Fall 2026\par
+        \textbf{TURMA:} Team Alpha\par
+        \textbf{DISCIPLINA:} Ethics and Civic Responsibility\par
+        \textbf{PROFESSOR(A):} Peter Parker (Spider-Man)\par
+        \textbf{SALA:} Avengers Academy Simulation Room\par
+        \textbf{DATA:} \displaylessondate\par
+        \textbf{HORÁRIO / DIA DA SEMANA:} 2:15--2:45 p.m. / Friday\par
+        \textbf{DURAÇÃO:} 30 minutes
+    }{%
+        \iflessonlanguage{spanish}{%
+            \textbf{INSTITUCIÓN:} Avengers Academy, New York Training Center\par
+            \textbf{CURSO:} New Recruit Orientation\par
+            \textbf{SEMESTRE:} Fall 2026\par
+            \textbf{GRUPO:} Team Alpha\par
+            \textbf{ASIGNATURA:} Ethics and Civic Responsibility\par
+            \textbf{PROFESOR(A):} Peter Parker (Spider-Man)\par
+            \textbf{AULA:} Avengers Academy Simulation Room\par
+            \textbf{FECHA:} \displaylessondate\par
+            \textbf{HORA / DÍA DE LA SEMANA:} 2:15--2:45 p.m. / Friday\par
+            \textbf{DURACIÓN:} 30 minutes
+        }{%
+            \textbf{INSTITUTION:} Avengers Academy, New York Training Center\par
+            \textbf{COURSE:} New Recruit Orientation\par
+            \textbf{SEMESTER:} Fall 2026\par
+            \textbf{CLASS:} Team Alpha\par
+            \textbf{SUBJECT:} Ethics and Civic Responsibility\par
+            \textbf{INSTRUCTOR:} Peter Parker (Spider-Man)\par
+            \textbf{ROOM:} Avengers Academy Simulation Room\par
+            \textbf{DATE:} \displaylessondate\par
+            \textbf{TIME / DAY OF THE WEEK:} 2:15--2:45 p.m. / Friday\par
+            \textbf{DURATION:} 30 minutes
+        }%
+    }%
 }
+
 \newcommand{\objectivetitle}{%
-  \iflessonlanguage{brazilian}{OBJETIVO}{%
-    \iflessonlanguage{spanish}{OBJETIVO}{OBJECTIVE}%
-  }%
+    \iflessonlanguage{brazilian}{OBJETIVO}{%
+        \iflessonlanguage{spanish}{OBJETIVO}{OBJECTIVE}%
+    }%
 }
+
 \newcommand{\contenttitle}{%
-  \iflessonlanguage{brazilian}{CONTEÚDO}{%
-    \iflessonlanguage{spanish}{CONTENIDO}{CONTENT}%
-  }%
+    \iflessonlanguage{brazilian}{CONTEÚDO}{%
+        \iflessonlanguage{spanish}{CONTENIDO}{CONTENT}%
+    }%
 }
+
 \newcommand{\methodologytitle}{%
-  \iflessonlanguage{brazilian}{METODOLOGIA}{%
-    \iflessonlanguage{spanish}{METODOLOGÍA}{METHODOLOGY}%
-  }%
+    \iflessonlanguage{brazilian}{METODOLOGIA}{%
+        \iflessonlanguage{spanish}{METODOLOGÍA}{METHODOLOGY}%
+    }%
 }
+
 \newcommand{\procedurestitle}{%
-  \iflessonlanguage{brazilian}{PROCEDIMENTOS}{%
-    \iflessonlanguage{spanish}{PROCEDIMIENTOS}{PROCEDURES}%
-  }%
+    \iflessonlanguage{brazilian}{PROCEDIMENTOS}{%
+        \iflessonlanguage{spanish}{PROCEDIMIENTOS}{PROCEDURES}%
+    }%
 }
+
 \newcommand{\resourcestitle}{%
-  \iflessonlanguage{brazilian}{RECURSOS}{%
-    \iflessonlanguage{spanish}{RECURSOS}{RESOURCES}%
-  }%
+    \iflessonlanguage{brazilian}{RECURSOS}{%
+        \iflessonlanguage{spanish}{RECURSOS}{RESOURCES}%
+    }%
 }
+
 \newcommand{\assessmenttitle}{%
-  \iflessonlanguage{brazilian}{AVALIAÇÃO}{%
-    \iflessonlanguage{spanish}{EVALUACIÓN}{ASSESSMENT}%
-  }%
+    \iflessonlanguage{brazilian}{AVALIAÇÃO}{%
+        \iflessonlanguage{spanish}{EVALUACIÓN}{ASSESSMENT}%
+    }%
 }
+
 \newcommand{\bibliographytitle}{%
-  \iflessonlanguage{brazilian}{BIBLIOGRAFIA}{%
-    \iflessonlanguage{spanish}{BIBLIOGRAFÍA}{BIBLIOGRAPHY}%
-  }%
+    \iflessonlanguage{brazilian}{BIBLIOGRAFIA}{%
+        \iflessonlanguage{spanish}{BIBLIOGRAFÍA}{BIBLIOGRAPHY}%
+    }%
 }
+
 \newcommand{\observationstitle}{%
-  \iflessonlanguage{brazilian}{OBSERVAÇÕES}{%
-    \iflessonlanguage{spanish}{OBSERVACIONES}{OBSERVATIONS}%
-  }%
+    \iflessonlanguage{brazilian}{OBSERVAÇÕES}{%
+        \iflessonlanguage{spanish}{OBSERVACIONES}{OBSERVATIONS}%
+    }%
 }

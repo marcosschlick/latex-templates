@@ -1,31 +1,33 @@
-% Shared layout, colors, and reusable dossier components.
+% Packages for a PDFLaTeX-compatible lesson plan.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[main=english]{babel}
 \babelprovide[import]{spanish}
 \babelprovide[import]{brazilian}
-% Track the selected title language separately; imported Babel languages may
-% share a hyphenation identifier on minimal TeX installations.
-\newcommand{\lessonlanguage}{english}
-\newcommand{\setlessonlanguage}[1]{%
-  \renewcommand{\lessonlanguage}{#1}%
-  \selectlanguage{#1}%
-}
-\newcommand{\iflessonlanguage}[3]{%
-  \edef\lessonlanguagecurrent{\lessonlanguage}%
-  \edef\lessonlanguagecheck{#1}%
-  \ifx\lessonlanguagecurrent\lessonlanguagecheck #2\else #3\fi
-}
 \usepackage[a4paper,top=1.4cm,bottom=1.7cm,left=1.7cm,right=1.7cm,includehead,headheight=1.2cm,headsep=0.25cm]{geometry}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{colortbl}
 \usepackage{array}
 
+% Track the selected title language separately from Babel hyphenation rules.
+\newcommand{\lessonlanguage}{english}
+\newcommand{\setlessonlanguage}[1]{%
+    \renewcommand{\lessonlanguage}{#1}%
+    \selectlanguage{#1}%
+}
+\newcommand{\iflessonlanguage}[3]{%
+    \edef\lessonlanguagecurrent{\lessonlanguage}%
+    \edef\lessonlanguagecheck{#1}%
+    \ifx\lessonlanguagecurrent\lessonlanguagecheck #2\else #3\fi
+}
+
+% General paragraph, header, and page style settings.
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \pagestyle{fancy}
 \fancyhf{}
+
 % Replace assets/logo.png with your institution's logo, keeping this filename.
 \fancyhead[C]{\includegraphics[height=1.0cm]{assets/logo.png}}
 \renewcommand{\headrulewidth}{0pt}
@@ -36,25 +38,30 @@
 
 % The minipage gives paragraphs and lists identical top and bottom padding.
 \newcommand{\dossierbox}[2]{%
-  \par\vspace{0.5em}%
-  \noindent\begin{tabular}{|p{\dimexpr\linewidth-2\tabcolsep-2\arrayrulewidth\relax}|}
-  \hline
-  \rowcolor{dossierlightblue}\rule{0pt}{1.45em}\textbf{#1}\\\hline
-  \begin{minipage}[t]{\linewidth}\vspace{0.65em}#2\end{minipage}\\[-0.2em]
-  \rule{0pt}{0.65em}\\\hline
-  \end{tabular}%
-  \par\vspace{0.15em}%
+    \par\vspace{0.5em}%
+    \noindent\begin{tabular}{|p{\dimexpr\linewidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+        \hline
+        \rowcolor{dossierlightblue}\rule{0pt}{1.45em}\textbf{#1}\\\hline
+        \begin{minipage}[t]{\linewidth}\vspace{0.65em}#2\end{minipage}\\[-0.2em]
+        \rule{0pt}{0.65em}\\\hline
+    \end{tabular}%
+    \par\vspace{0.15em}%
 }
 
+% Compact bullet list used inside dossier boxes.
 \newenvironment{dossieritems}{%
-  \begin{list}{\textbullet}{%
-    \setlength{\leftmargin}{1.5em}%
-    \setlength{\itemsep}{0.15em}%
-    \setlength{\topsep}{0pt}%
-    \setlength{\parsep}{0pt}%
-    \setlength{\partopsep}{0pt}%
-  }%
+    \begin{list}{\textbullet}{%
+        \setlength{\leftmargin}{1.5em}%
+        \setlength{\itemsep}{0.15em}%
+        \setlength{\topsep}{0pt}%
+        \setlength{\parsep}{0pt}%
+        \setlength{\partopsep}{0pt}%
+    }%
 }{\end{list}}
 
+% Suppress the default bibliography heading inside the bibliography dossier box.
+\renewcommand{\section}[2]{}
+
+% Localized section labels used by content.tex.
 \input{sections.tex}
 
