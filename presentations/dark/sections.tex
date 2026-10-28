@@ -1,0 +1,33 @@
+% Localized section labels follow the explicitly selected document language.
+% Imported Babel languages can share a hyphenation identifier, so compare names.
+\newcommand{\ifpresentationlanguage}[3]{%
+    \ifnum\pdfstrcmp{\languagename}{#1}=0 #2\else #3\fi
+}
+\newcommand{\contentslabel}{%
+    \ifpresentationlanguage{brazilian}{Sumário}{%
+        \ifpresentationlanguage{spanish}{Índice}{Contents}%
+    }%
+}
+\newcommand{\referenceslabel}{%
+    \ifpresentationlanguage{brazilian}{Referências}{%
+        \ifpresentationlanguage{spanish}{Referencias}{References}%
+    }%
+}
+
+% Format the presentation date in the selected document language.
+\newcommand{\presentationmonthname}{%
+    \ifpresentationlanguage{english}{%
+        \ifcase\presentationdatemonth\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi
+    }{\ifpresentationlanguage{brazilian}{%
+        \ifcase\presentationdatemonth\or janeiro\or fevereiro\or março\or abril\or maio\or junho\or julho\or agosto\or setembro\or outubro\or novembro\or dezembro\fi
+    }{%
+        \ifcase\presentationdatemonth\or enero\or febrero\or marzo\or abril\or mayo\or junio\or julio\or agosto\or septiembre\or octubre\or noviembre\or diciembre\fi
+    }}%
+}
+\newcommand{\presentationdate}{%
+    \ifpresentationlanguage{english}{%
+        \presentationmonthname\space\presentationdateday, \presentationdateyear
+    }{%
+        \presentationdateday\space de\space\presentationmonthname\space de\space\presentationdateyear
+    }%
+}

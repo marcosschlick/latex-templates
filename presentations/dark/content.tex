@@ -1,0 +1,241 @@
+% Shared titles: update each definition to change both the TOC and first slide title.
+\newcommand{\lossestitle}{Fury's Attack}
+\newcommand{\sakaartitle}{The Winter Soldier}
+\newcommand{\decisionstitle}{The Choice to Resist}
+\newcommand{\prioritiestitle}{A Promise to Bucky}
+\newcommand{\returntitle}{The Fall of S.H.I.E.L.D.}
+\newcommand{\modeltitle}{A Tally of Those Protected}
+
+{
+    \setbeamertemplate{footline}{}
+    \begin{frame}[plain,noframenumbering]
+        \titlepage
+        \note{Introduce Steve's journey from Fury's attack to his search for Bucky.}
+    \end{frame}
+}
+
+\begin{frame}{\contentslabel}{From a hidden conspiracy to an unfinished reunion}
+    \tableofcontents[subsectionstyle=show]
+    \note{Preview the conspiracy, HYDRA's defeat, and Steve's search for Bucky.}
+\end{frame}
+
+\section{The Conspiracy}
+\subsection{\lossestitle}
+\begin{frame}{\lossestitle}{Fury's attack and a threat within S.H.I.E.L.D.}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{0.40\textwidth}
+            \begin{itemize}
+                \item \textbf{Nick Fury} is attacked by a masked assassin.
+                \item \textbf{S.H.I.E.L.D.} brands Steve a fugitive.
+                \item \textbf{Steve} discovers a threat within the agency.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.54\textwidth}
+            \begin{figure}
+                \centering
+                % Scale to the specified height and crop any horizontal overflow.
+                \presentationimage{assets/winter_soldier_street.jpg}{4.2cm}{\linewidth}
+                \caption{The Winter Soldier on the street.}
+            \end{figure}
+        \end{column}
+    \end{columns}
+    \note{Fury's attack draws Steve into a conspiracy within S.H.I.E.L.D.}
+\end{frame}
+
+\subsection{\sakaartitle}
+\begin{frame}{\sakaartitle}{The assassin is someone Steve once knew}
+    \begin{figure}
+        \centering
+        % Scale to the specified height and crop any horizontal overflow.
+        \presentationimage{assets/captain_vs_winter_soldier.jpg}{5.2cm}{0.95\linewidth}
+        \caption{Captain America faces the Winter Soldier.}
+    \end{figure}
+    \note{The Winter Soldier is Bucky Barnes, Steve's friend under HYDRA's control.}
+\end{frame}
+
+\begin{frame}{A Friend Behind the Mask}{Steve and Natasha uncover HYDRA's infiltration}
+    \begin{figure}
+        \centering
+        \begin{subfigure}[t]{0.46\linewidth}
+            \vspace{0pt}
+            \centering
+            % Both paired images use the same height and width limits.
+            \presentationimage{assets/captain_and_black_widow.jpg}{3.8cm}{\linewidth}
+            \caption{Steve and Natasha search for the truth.}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.46\linewidth}
+            \vspace{0pt}
+            \centering
+            \presentationimage{assets/shield_helicarriers.jpg}{3.8cm}{\linewidth}
+            \caption{Project Insight threatens those HYDRA considers enemies.}
+        \end{subfigure}
+        \caption{The allies uncover a conspiracy within S.H.I.E.L.D.}
+    \end{figure}
+    \note{Steve, Natasha, and Sam follow the evidence to HYDRA.}
+\end{frame}
+
+\subsubsection{The Friend Behind the Mask}
+\begin{frame}{The Friend Behind the Mask}{Bucky has been turned into HYDRA's weapon}
+    \begin{figure}
+        \centering
+        % Scale to the specified height and crop any horizontal overflow.
+        \presentationimage{assets/captain_and_bucky_by_river.jpg}{5.2cm}{0.95\linewidth}
+        \caption{Steve refuses to give up on Bucky.}
+    \end{figure}
+    \note{Steve recognizes his friend beneath HYDRA's conditioning.}
+\end{frame}
+
+\subsection{\decisionstitle}
+\begin{frame}{\decisionstitle}{Project Insight turns security into a weapon}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.30\textwidth}
+            \textbf{What Steve Learns}
+            \begin{itemize}
+                \item HYDRA is inside S.H.I.E.L.D.
+                \item Bucky is the Winter Soldier
+                \item Project Insight targets threats
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.30\textwidth}
+            \textbf{The Plan}
+            \begin{enumerate}
+                \item Expose HYDRA
+                \item Stop the helicarriers
+                \item Protect the people
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.30\textwidth}
+            \textbf{The Choice}
+            \begin{description}
+                \item[Steve] \keyphrase{Protect the people}
+                \item[Natasha] Reveal the files
+                \item[Sam] Help stop the carriers
+            \end{description}
+        \end{column}
+    \end{columns}
+    \note{Steve chooses to stop Project Insight and oppose the agency he serves.}
+\end{frame}
+
+\begin{frame}{The Road to the Triskelion}{From Fury's attack to the helicarrier launch}
+    \centering
+    \begin{tikzpicture}[
+            stage/.style={draw=offwhite,align=center,minimum width=3cm,minimum height=1cm},
+            every node/.style={font=\small}]
+        \node[stage] (loss) {Attack\\Fury};
+        \node[stage,right of=loss,node distance=4cm] (exile) {Truth\\HYDRA};
+        \node[stage,final stage,right of=exile,node distance=4cm] (return) {Triskelion\\Stop Insight};
+        \draw[progress arrow] (loss) -- (exile);
+        \draw[progress arrow] (exile) -- (return);
+    \end{tikzpicture}
+    \note{Trace Steve's journey from Fury's attack to the Triskelion.}
+\end{frame}
+
+\section{Steve's Choice}
+{
+    \setbeamertemplate{frametitle}{}
+    \begin{frame}
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[inner sep=0pt,font=\LARGE] at (current page.center) {A friend is worth finding.};
+        \end{tikzpicture}
+        \note{Steve refuses to abandon Bucky, even after HYDRA's conditioning.}
+    \end{frame}
+}
+
+\subsection{\prioritiestitle}
+\begin{frame}{\prioritiestitle}
+    \centering
+    {\Large Bucky may have forgotten their past. \keyphrase{Steve has not.}\par}
+    \medskip
+    {\footnotesize From the historical records: \citet{lore_thor,lore_loki,lore_asgard}.\par}
+    \note{Emphasize Steve's loyalty to Bucky.}
+\end{frame}
+
+\begin{frame}{A Promise Kept}{Steve will not leave Bucky behind}
+    \begin{table}
+        \centering
+        \caption{The path from HYDRA's control to an uncertain reunion.}
+        \setlength\extrarowheight{4pt}
+        \begin{tabularx}{\linewidth}{lYY}
+            \toprule
+            \rowcolor{softblack}
+            \textbf{Stage} & \textbf{Disruption} & \textbf{Response}\\
+            \midrule
+            S.H.I.E.L.D. & HYDRA hides inside the agency & Follow the evidence\\
+            Triskelion & Project Insight is about to launch & Stop the helicarriers\\
+            River & Bucky fights Steve, then saves him & Hold on to their friendship\\
+            \midrule
+            \highlightrow
+            Resolution & Bucky disappears with his past unresolved & Steve sets out to find him\\
+            \bottomrule
+        \end{tabularx}
+    \end{table}
+    \note{Follow the crisis from HYDRA's infiltration to Steve's search for Bucky.}
+\end{frame}
+
+\subsection{\returntitle}
+\begin{frame}{\returntitle}{HYDRA is exposed, and the agency collapses}
+    \begin{block}{The Threat}
+        HYDRA plans to eliminate people it considers dangerous.
+    \end{block}
+    \begin{alertblock}{The Resistance}
+        Steve, Natasha, and Sam expose HYDRA and stop the helicarriers.
+    \end{alertblock}
+    \begin{exampleblock}{The Aftermath}
+        S.H.I.E.L.D. falls. Bucky saves Steve, then disappears.\footnote{A chronicle of the conspiracy and its aftermath.}
+    \end{exampleblock}
+    \medskip
+    From the historical records: \citet{lore_thor}.
+    \note{HYDRA's plan is stopped, but Bucky's future remains unresolved.}
+\end{frame}
+
+\subsection{\modeltitle}
+\begin{frame}[fragile]{\modeltitle}{An imagined count of those protected}
+    \begin{columns}[c,onlytextwidth]
+        \begin{column}{0.46\textwidth}
+            \begin{Verbatim}[fontsize=\footnotesize]
+def protected_fraction(p, N):
+    if N <= 0 or p < 0 or p > N:
+        raise ValueError("Bad input")
+    return p / N
+
+saved, total = 75, 100
+fraction = protected_fraction(saved, total)
+print(f"Saved: {fraction:.0%}")
+      \end{Verbatim}
+        \end{column}
+        \begin{column}{0.46\textwidth}
+            \textbf{This imagined tally} represents people protected from Project Insight.
+
+            \medskip
+            This is an imagined count, not a number given in the story:
+            \[
+                r=\frac{p}{N},\qquad N>0,\quad 0\leq p\leq N.
+            \]
+        \end{column}
+    \end{columns}
+    \note{The 75 percent figure is an imagined example, not a count from the story.}
+\end{frame}
+
+\begin{frame}{A Narrowing Window to Act}{A hypothetical account of stopping Project Insight}
+    This imagined model estimates the chance of stopping Project Insight:
+    \begin{equation}
+        P(E)=\frac{1}{1+\exp[-(\alpha C-\gamma D)]},\qquad \alpha,\gamma>0.
+    \end{equation}
+    Here, $C$ is the available response capacity and $D$ is the delay before the response begins.
+    This model is imagined; the chronicle gives no exact response data.
+
+    \medskip
+    Greater response capacity and an earlier intervention improve the chance of stopping the helicarriers.
+    \note{More capacity and less delay improve the chance of success in this imagined model.}
+\end{frame}
+
+\section{\referenceslabel}
+\setbeamertemplate{frametitle continuation}[from second]
+\begin{frame}[allowframebreaks]{\referenceslabel}{Records of HYDRA and the Winter Soldier}
+    \footnotesize
+    \renewcommand{\bibsection}{}
+    \bibliographystyle{plainnat}
+    \bibliography{references}
+    \note{Point to the fictional sources listed here for the chronicle.}
+\end{frame}

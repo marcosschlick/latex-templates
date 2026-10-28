@@ -1,0 +1,251 @@
+% Packages for a PDFLaTeX-compatible presentation on Overleaf.
+\usepackage{cmap}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[main=english]{babel}
+\babelprovide[import]{brazilian}
+\babelprovide[import]{spanish}
+\usepackage{xpatch}
+\usepackage{pgfpages}
+\usepackage{fancyvrb}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage[authoryear,round]{natbib}
+
+% Typography and slide margins.
+\usefonttheme{serif}
+\setbeamersize{text margin left=14mm,text margin right=14mm}
+
+\setbeamerfont{title}{size=\Huge,series=\bfseries}
+\setbeamerfont{subtitle}{size=\large,series=\mdseries}
+\setbeamerfont{author}{size=\small,series=\mdseries}
+\setbeamerfont{institute}{size=\footnotesize}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\small,series=\mdseries}
+\setbeamerfont{part title}{size=\Large,series=\mdseries}
+\setbeamerfont{caption}{size=\footnotesize}
+\setbeamerfont{caption name}{series=\bfseries}
+\setbeamerfont{footline}{size=\fontsize{6}{7}\selectfont}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamerfont{block body}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamerfont{section in toc}{size=\normalsize,series=\bfseries}
+\setbeamerfont{subsection in toc}{size=\small}
+\setbeamerfont{subsubsection in toc}{size=\footnotesize}
+
+% Shared palette: off-white, soft black, and blue accents.
+\definecolor{offwhite}{HTML}{F8F8F8}
+\definecolor{softblack}{HTML}{282828}
+\definecolor{darkblue}{HTML}{324B64}
+\definecolor{lightblue}{HTML}{9EC4D9}
+\definecolor{vibrantblue}{HTML}{327DE1}
+\newcommand{\keyphrase}[1]{\textcolor{lightblue}{#1}}
+\newcommand{\highlightrow}{\rowcolor{darkblue}}
+\tikzset{
+    progress arrow/.style={->,draw=vibrantblue},
+    final stage/.style={draw=vibrantblue}
+}
+
+\setbeamercolor{normal text}{fg=offwhite,bg=softblack}
+\setbeamercolor{background canvas}{bg=softblack}
+\setbeamercolor{palette primary}{fg=offwhite,bg=softblack}
+\setbeamercolor{palette secondary}{fg=offwhite,bg=softblack}
+\setbeamercolor{palette tertiary}{fg=offwhite,bg=softblack}
+\setbeamercolor{palette quaternary}{fg=offwhite,bg=softblack}
+\setbeamercolor{structure}{fg=offwhite}
+\setbeamercolor{item}{fg=offwhite}
+\setbeamercolor{title}{fg=offwhite}
+\setbeamercolor{author}{fg=offwhite}
+\setbeamercolor{institute}{fg=offwhite}
+\setbeamercolor{frametitle}{fg=offwhite}
+\setbeamercolor{framesubtitle}{fg=offwhite}
+\setbeamercolor{page number in head/foot}{fg=offwhite}
+\setbeamercolor{alerted text}{fg=offwhite}
+\setbeamercolor{example text}{fg=offwhite}
+\setbeamercolor{section in toc}{fg=offwhite}
+\setbeamercolor{subsection in toc}{fg=offwhite}
+\setbeamercolor{subsubsection in toc}{fg=offwhite}
+\setbeamercolor{caption}{fg=offwhite}
+\setbeamercolor{caption name}{fg=offwhite}
+\setbeamercolor{footnote mark}{fg=offwhite}
+\setbeamercolor{block title}{fg=offwhite,bg=softblack}
+\setbeamercolor{block body}{fg=offwhite,bg=softblack}
+\setbeamercolor{block title alerted}{fg=offwhite,bg=softblack}
+\setbeamercolor{block body alerted}{fg=offwhite,bg=softblack}
+\setbeamercolor{block title example}{fg=offwhite,bg=softblack}
+\setbeamercolor{block body example}{fg=offwhite,bg=softblack}
+\setbeamercolor{bibliography entry author}{fg=offwhite}
+\setbeamercolor{bibliography entry title}{fg=offwhite}
+\setbeamercolor{bibliography entry location}{fg=offwhite}
+\setbeamercolor{bibliography entry note}{fg=offwhite}
+\hypersetup{colorlinks=true,urlcolor=offwhite,citecolor=offwhite,linkcolor=offwhite,filecolor=offwhite,pdfdisplaydoctitle=true}
+
+% Reusable text and table commands.
+\newcommand{\samelineand}{\qquad}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% \presentationimage{file}{height}{maximum width}
+\newsavebox{\presentationimagebox}
+\newlength{\presentationimagemaxwidth}
+\newcommand{\presentationimage}[3]{%
+    \begingroup
+    \sbox{\presentationimagebox}{\includegraphics[height=#2]{#1}}%
+    \setlength{\presentationimagemaxwidth}{#3}%
+    \ifdim\wd\presentationimagebox>\presentationimagemaxwidth
+        \begin{tikzpicture}[baseline=0pt]
+            \path[use as bounding box] (-.5\presentationimagemaxwidth,0)
+                rectangle (.5\presentationimagemaxwidth,#2);
+            \clip (-.5\presentationimagemaxwidth,0) rectangle (.5\presentationimagemaxwidth,#2);
+            \node[anchor=south,inner sep=0pt,outer sep=0pt] at (0,0) {\usebox{\presentationimagebox}};
+        \end{tikzpicture}%
+    \else
+        \usebox{\presentationimagebox}%
+    \fi
+    \endgroup
+}
+
+% List markers and internal Beamer adjustments.
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{itemize subsubitem}[circle]
+\makeatletter
+% Keep author-year citations linked across line breaks.
+\def\hyper@natlinkbreak#1#2{\hyper@linkend#1\hyper@linkstart{cite}{cite.#2}}
+\xpatchcmd{\itemize}
+    {\def\makelabel}
+    {\ifnum\@itemdepth=1\relax\setlength\itemsep{1.6ex}\else\setlength\itemsep{0.4ex}\fi\def\makelabel}
+    {}{\PackageError{presentation}{Could not patch list spacing}{Check the installed Beamer version.}}
+% Clear the previous title so untitled slides can use section headings.
+\renewcommand*\beamer@checkframetitle{
+    \global\let\beamer@frametitle\relax
+    \@ifnextchar\bgroup\beamer@inlineframetitle{}
+}
+\AtBeginPart{\beamer@tocsectionnumber=0\relax\setcounter{section}{0}}
+% Record the next slide number in each table-of-contents entry.
+\newcounter{tocframenumber}
+\newcommand{\tocdots}{\leavevmode\cleaders\hb@xt@ 0.8em{\hss.\hss}\hfill\kern\z@}
+\patchcmd{\beamer@section}
+    {\addtocontents{toc}{\protect\beamer@sectionintoc{\the\c@section}{#2}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {\setcounter{tocframenumber}{\value{framenumber}}\stepcounter{tocframenumber}\addtocontents{toc}{\protect\beamer@sectionintoc{\the\c@section}{#2\tocdots\thetocframenumber}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {}{\PackageError{presentation}{Could not patch section entries}{Check the installed Beamer version.}}
+\patchcmd{\beamer@subsection}
+    {\addtocontents{toc}{\protect\beamer@subsectionintoc{\the\c@section}{\the\c@subsection}{#2}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {\setcounter{tocframenumber}{\value{framenumber}}\stepcounter{tocframenumber}\addtocontents{toc}{\protect\beamer@subsectionintoc{\the\c@section}{\the\c@subsection}{#2\tocdots\thetocframenumber}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {}{\PackageError{presentation}{Could not patch subsection entries}{Check the installed Beamer version.}}
+\patchcmd{\beamer@subsubsection}
+    {\addtocontents{toc}{\protect\beamer@subsubsectionintoc{\the\c@section}{\the\c@subsection}{\the\c@subsubsection}{#2}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {\setcounter{tocframenumber}{\value{framenumber}}\stepcounter{tocframenumber}\addtocontents{toc}{\protect\beamer@subsubsectionintoc{\the\c@section}{\the\c@subsection}{\the\c@subsubsection}{#2\tocdots\thetocframenumber}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {}{\PackageError{presentation}{Could not patch subsubsection entries}{Check the installed Beamer version.}}
+\ifnotes
+    % The slide already has page anchors; do not duplicate them on the notes page.
+    \xpatchcmd{\beamer@outsideframenote}
+        {\begingroup}
+        {\begingroup\let\Hy@EveryPageAnchor\@empty}
+        {}{\PackageWarning{presentation}{Could not suppress duplicate notes anchors}}
+\fi
+\makeatother
+
+% Captions, navigation, and slide layout.
+\setlength\belowdisplayshortskip{1ex}
+\setlength{\abovecaptionskip}{1ex}
+\setlength{\belowcaptionskip}{0.5ex}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}[period]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[default]
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}{
+    \leavevmode\leftskip=3em
+    \rlap{\hskip-1.8em\inserttocsectionnumber.\inserttocsubsectionnumber}
+    \inserttocsubsection\par\vskip0.3em
+}
+\setbeamertemplate{subsubsection in toc}{
+    \leavevmode\leftskip=5em
+    \rlap{\hskip-2.8em\inserttocsectionnumber.\inserttocsubsectionnumber.\inserttocsubsubsectionnumber}
+    \inserttocsubsubsection\par
+}
+
+\newsavebox{\presentationtitlebox}
+\setbeamertemplate{title page}{
+    \vfill
+    \begin{flushleft}
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}%
+            \sbox{\presentationtitlebox}{\scalebox{1.08}{\inserttitle}}%
+            \ifdim\wd\presentationtitlebox>\linewidth
+                \sbox{\presentationtitlebox}{\parbox{\linewidth}{\raggedright\inserttitle}}%
+                \ifdim\dimexpr\ht\presentationtitlebox+\dp\presentationtitlebox\relax>.4\paperheight
+                    \PackageWarning{presentation}{Long title reduced to fit the page}%
+                    \resizebox*{!}{.4\paperheight}{\usebox{\presentationtitlebox}}\par
+                \else
+                    \usebox{\presentationtitlebox}\par
+                \fi
+            \else
+                \usebox{\presentationtitlebox}\par
+            \fi}
+        \medskip
+        {\usebeamerfont{subtitle}\insertsubtitle\par}
+        \bigskip
+        {\usebeamerfont{author}\insertauthor\par}
+        \medskip
+        {\usebeamerfont{institute}\insertinstitute\par}
+        \medskip
+        {\usebeamerfont{date}\insertdate\par}
+    \end{flushleft}
+    \vfill
+}
+\setbeamertemplate{frametitle}{
+    \nointerlineskip\vskip4ex
+    {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\par}
+    \ifx\insertframesubtitle\empty\else
+        {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par}
+    \fi
+    \vskip1.5ex
+}
+\addtobeamertemplate{frametitle}{
+    \ifx\insertframetitle\empty
+        \frametitle{\insertsectionhead}
+        \ifx\insertframesubtitle\empty
+            \framesubtitle{\insertsubsectionhead}
+        \fi
+    \fi
+}{}
+\setbeamertemplate{footline}{
+    \usebeamerfont{footline}\usebeamercolor[fg]{page number in head/foot}
+    \hbox to \paperwidth{\hskip14mm\strut\hfill\insertframenumber{} / \inserttotalframenumber\hskip14mm}
+    \vskip2ex
+}
+
+% The notes entry point enables a second screen on the right.
+\ifnotes
+    \setbeamerfont{note page}{size=\Large}
+    \setbeamercolor{note page}{fg=offwhite}
+    \newsavebox{\presentationnotebox}
+    \setbeamertemplate{note page}{%
+        \sbox{\presentationnotebox}{%
+            \begin{tikzpicture}
+                \node[align=center,text width=\dimexpr\paperwidth-28mm\relax]
+                    {\hyphenpenalty=10000\exhyphenpenalty=10000\insertnote\par};
+            \end{tikzpicture}%
+        }%
+        \begin{tikzpicture}[remember picture,overlay]
+            \fill[softblack] (current page.south west) rectangle (current page.north east);
+            \node[inner sep=0pt] at (current page.center) {%
+                \ifdim\dimexpr\ht\presentationnotebox+\dp\presentationnotebox\relax>\dimexpr\paperheight-20mm\relax
+                    \PackageWarning{presentation}{Long speaker note reduced to fit the page}%
+                    \resizebox*{!}{\dimexpr\paperheight-20mm\relax}{\usebox{\presentationnotebox}}%
+                \else
+                    \usebox{\presentationnotebox}%
+                \fi
+            };
+        \end{tikzpicture}%
+    }
+    \setbeameroption{show notes on second screen=right}
+\fi
+
+\pdfstringdefDisableCommands{\def\inst#1{}\def\and{, }\def\underline#1{#1}\def\samelineand{; }}
+
+\input{sections.tex}
