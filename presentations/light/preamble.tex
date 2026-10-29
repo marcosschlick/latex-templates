@@ -88,27 +88,70 @@
 \newcommand{\samelineand}{\qquad}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
-% Choose a layout by name inside a frame in content.tex.
-% Use block, alertblock, and exampleblock for Beamer's three block styles.
-\newenvironment{PresentationContents}{%
+% \begin{SlideContents}...\end{SlideContents}
+\newenvironment{SlideContents}{%
     \tableofcontents[subsectionstyle=show]
 }{}
-\newenvironment{PresentationColumns}[1][c]{%
-    \begin{columns}[#1,onlytextwidth]
-}{\end{columns}}
-% Use inside a native frame[fragile] when a slide contains Verbatim code.
-\newenvironment{PresentationCodeColumns}{%
+
+% \begin{SlideBulletsPhoto}{file}{height}{caption}...bullets...\end{SlideBulletsPhoto}
+\newenvironment{SlideBulletsPhoto}[3]{%
+    \def\slidebulletsphotofile{#1}%
+    \def\slidebulletsphotoheight{#2}%
+    \def\slidebulletsphotocaption{#3}%
     \begin{columns}[c,onlytextwidth]
-}{\end{columns}}
-\newenvironment{PresentationFigure}{%
+    \begin{column}{0.40\textwidth}
+}{%
+    \end{column}%
+    \begin{column}{0.54\textwidth}
+        \begin{figure}
+            \centering
+            \presentationimage{\slidebulletsphotofile}{\slidebulletsphotoheight}{\linewidth}
+            \caption{\slidebulletsphotocaption}
+        \end{figure}
+    \end{column}%
+    \end{columns}%
+}
+
+% \begin{SlideTitlePhoto}{file}{height}{maximum width}...caption...\end{SlideTitlePhoto}
+\newenvironment{SlideTitlePhoto}[3]{%
+    \begin{figure}
+        \centering
+        \presentationimage{#1}{#2}{#3}%
+}{\end{figure}}
+
+% \begin{SlidePhotoPair}...\SlidePhotoPanel{file}{height}{caption}...\end{SlidePhotoPair}
+\newenvironment{SlidePhotoPair}{%
     \begin{figure}\centering
 }{\end{figure}}
-\newenvironment{PresentationTable}{%
+\newcommand{\SlidePhotoPanel}[3]{%
+    \begin{subfigure}[t]{0.46\linewidth}
+        \vspace{0pt}
+        \centering
+        \presentationimage{#1}{#2}{\linewidth}
+        \caption{#3}
+    \end{subfigure}%
+}
+
+% Use native column environments inside SlideThreeColumns for each fixed-width column.
+\newenvironment{SlideThreeColumns}{%
+    \begin{columns}[T,onlytextwidth]
+}{\end{columns}}
+
+% \begin{SlideTable}...caption and tabular...\end{SlideTable}
+\newenvironment{SlideTable}{%
     \begin{table}\centering
 }{\end{table}}
-% Keep centering active through the end of the frame.
-\newcommand{\PresentationTimeline}{\centering}
-\newenvironment{PresentationReferences}{%
+
+% Use two native column environments inside SlideCodeExplanation.
+\newenvironment{SlideCodeExplanation}{%
+    \begin{columns}[c,onlytextwidth]
+}{\end{columns}}
+
+% Keep this command active through the end of a timeline frame.
+\newcommand{\SlideTimeline}{\centering}
+
+% \begin{SlideReferences}...bibliography...\end{SlideReferences}
+\newenvironment{SlideReferences}{%
     \footnotesize\renewcommand{\bibsection}{}
 }{}
 
