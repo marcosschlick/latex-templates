@@ -15,14 +15,15 @@
 }
 
 \begin{frame}{\contentslabel}{From a hidden conspiracy to an unfinished reunion}
-    \tableofcontents[subsectionstyle=show]
+    \begin{PresentationContents}
+    \end{PresentationContents}
     \note{Preview the conspiracy, HYDRA's defeat, and Steve's search for Bucky.}
 \end{frame}
 
 \section{The Conspiracy}
 \subsection{\lossestitle}
 \begin{frame}{\lossestitle}{Fury's attack and a threat within S.H.I.E.L.D.}
-    \begin{columns}[c,onlytextwidth]
+    \begin{PresentationColumns}[c]
         \begin{column}{0.40\textwidth}
             \begin{itemize}
                 \item \textbf{Nick Fury} is attacked by a masked assassin.
@@ -31,31 +32,28 @@
             \end{itemize}
         \end{column}
         \begin{column}{0.54\textwidth}
-            \begin{figure}
-                \centering
+            \begin{PresentationFigure}
                 % Scale to the specified height and crop any horizontal overflow.
                 \presentationimage{assets/winter_soldier_street.jpg}{4.2cm}{\linewidth}
                 \caption{The Winter Soldier on the street.}
-            \end{figure}
+            \end{PresentationFigure}
         \end{column}
-    \end{columns}
+    \end{PresentationColumns}
     \note{Fury's attack draws Steve into a conspiracy within S.H.I.E.L.D.}
 \end{frame}
 
 \subsection{\sakaartitle}
 \begin{frame}{\sakaartitle}{The assassin is someone Steve once knew}
-    \begin{figure}
-        \centering
+    \begin{PresentationFigure}
         % Scale to the specified height and crop any horizontal overflow.
         \presentationimage{assets/captain_vs_winter_soldier.jpg}{5.2cm}{0.95\linewidth}
         \caption{Captain America faces the Winter Soldier.}
-    \end{figure}
+    \end{PresentationFigure}
     \note{The Winter Soldier is Bucky Barnes, Steve's friend under HYDRA's control.}
 \end{frame}
 
 \begin{frame}{A Friend Behind the Mask}{Steve and Natasha uncover HYDRA's infiltration}
-    \begin{figure}
-        \centering
+    \begin{PresentationFigure}
         \begin{subfigure}[t]{0.46\linewidth}
             \vspace{0pt}
             \centering
@@ -71,24 +69,23 @@
             \caption{Project Insight threatens those HYDRA considers enemies.}
         \end{subfigure}
         \caption{The allies uncover a conspiracy within S.H.I.E.L.D.}
-    \end{figure}
+    \end{PresentationFigure}
     \note{Steve, Natasha, and Sam follow the evidence to HYDRA.}
 \end{frame}
 
 \subsubsection{The Friend Behind the Mask}
 \begin{frame}{The Friend Behind the Mask}{Bucky has been turned into HYDRA's weapon}
-    \begin{figure}
-        \centering
+    \begin{PresentationFigure}
         % Scale to the specified height and crop any horizontal overflow.
         \presentationimage{assets/captain_and_bucky_by_river.jpg}{5.2cm}{0.95\linewidth}
         \caption{Steve refuses to give up on Bucky.}
-    \end{figure}
+    \end{PresentationFigure}
     \note{Steve recognizes his friend beneath HYDRA's conditioning.}
 \end{frame}
 
 \subsection{\decisionstitle}
 \begin{frame}{\decisionstitle}{Project Insight turns security into a weapon}
-    \begin{columns}[T,onlytextwidth]
+    \begin{PresentationColumns}[T]
         \begin{column}{0.30\textwidth}
             \textbf{What Steve Learns}
             \begin{itemize}
@@ -113,12 +110,12 @@
                 \item[Sam] Help stop the carriers
             \end{description}
         \end{column}
-    \end{columns}
+    \end{PresentationColumns}
     \note{Steve chooses to stop Project Insight and oppose the agency he serves.}
 \end{frame}
 
 \begin{frame}{The Road to the Triskelion}{From Fury's attack to the helicarrier launch}
-    \centering
+    \PresentationTimeline
     \begin{tikzpicture}[
             stage/.style={draw=offwhite,align=center,minimum width=3cm,minimum height=1cm},
             every node/.style={font=\small}]
@@ -152,8 +149,7 @@
 \end{frame}
 
 \begin{frame}{A Promise Kept}{Steve will not leave Bucky behind}
-    \begin{table}
-        \centering
+    \begin{PresentationTable}
         \caption{The path from HYDRA's control to an uncertain reunion.}
         \setlength\extrarowheight{4pt}
         \begin{tabularx}{\linewidth}{lYY}
@@ -169,7 +165,7 @@
             Resolution & Bucky disappears with his past unresolved & Steve sets out to find him\\
             \bottomrule
         \end{tabularx}
-    \end{table}
+    \end{PresentationTable}
     \note{Follow the crisis from HYDRA's infiltration to Steve's search for Bucky.}
 \end{frame}
 
@@ -191,7 +187,7 @@
 
 \subsection{\modeltitle}
 \begin{frame}[fragile]{\modeltitle}{An imagined count of those protected}
-    \begin{columns}[c,onlytextwidth]
+    \begin{PresentationCodeColumns}
         \begin{column}{0.46\textwidth}
             \begin{Verbatim}[fontsize=\footnotesize]
 def protected_fraction(p, N):
@@ -213,7 +209,7 @@ print(f"Saved: {fraction:.0%}")
                 r=\frac{p}{N},\qquad N>0,\quad 0\leq p\leq N.
             \]
         \end{column}
-    \end{columns}
+    \end{PresentationCodeColumns}
     \note{The 75 percent figure is an imagined example, not a count from the story.}
 \end{frame}
 
@@ -233,9 +229,9 @@ print(f"Saved: {fraction:.0%}")
 \section{\referenceslabel}
 \setbeamertemplate{frametitle continuation}[from second]
 \begin{frame}[allowframebreaks]{\referenceslabel}{Records of HYDRA and the Winter Soldier}
-    \footnotesize
-    \renewcommand{\bibsection}{}
+    \begin{PresentationReferences}
     \bibliographystyle{plainnat}
     \bibliography{references}
+    \end{PresentationReferences}
     \note{Point to the fictional sources listed here for the chronicle.}
 \end{frame}

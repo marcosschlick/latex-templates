@@ -88,6 +88,33 @@
 \newcommand{\samelineand}{\qquad}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
+% Choose a layout by name inside a frame in content.tex.
+% Use block, alertblock, and exampleblock for Beamer's three block styles.
+\newenvironment{PresentationContents}{%
+    \tableofcontents[subsectionstyle=show]
+}{}
+\newenvironment{PresentationColumns}[1][c]{%
+    \begin{columns}[#1,onlytextwidth]
+}{\end{columns}}
+% Use inside a native frame[fragile] when a slide contains Verbatim code.
+\newenvironment{PresentationCodeColumns}{%
+    \begin{columns}[c,onlytextwidth]
+}{\end{columns}}
+\newenvironment{PresentationFigure}{%
+    \begin{figure}\centering
+}{\end{figure}}
+\newenvironment{PresentationTable}{%
+    \begin{table}\centering
+}{\end{table}}
+% Keep centering active through the end of the frame.
+\newcommand{\PresentationTimeline}{\centering}
+\newenvironment{PresentationReferences}{%
+    \footnotesize\renewcommand{\bibsection}{}
+}{}
+
+% \primaryauthor{name} identifies and underlines the main author.
+\newcommand{\primaryauthor}[1]{\underline{#1}}
+
 % \presentationimage{file}{height}{maximum width}
 \newsavebox{\presentationimagebox}
 \newlength{\presentationimagemaxwidth}
@@ -246,6 +273,6 @@
     \setbeameroption{show notes on second screen=right}
 \fi
 
-\pdfstringdefDisableCommands{\def\inst#1{}\def\and{, }\def\underline#1{#1}\def\samelineand{; }}
+\pdfstringdefDisableCommands{\def\inst#1{}\def\and{, }\def\underline#1{#1}\def\primaryauthor#1{#1}\def\samelineand{; }}
 
 \input{sections.tex}
