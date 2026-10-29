@@ -265,11 +265,11 @@
     \begin{flushleft}
         {\usebeamerfont{title}\usebeamercolor[fg]{title}%
             \sbox{\presentationtitlebox}{\scalebox{1.08}{\inserttitle}}%
-            \ifdim\wd\presentationtitlebox>\linewidth
-                \sbox{\presentationtitlebox}{\parbox{\linewidth}{\raggedright\inserttitle}}%
-                \ifdim\dimexpr\ht\presentationtitlebox+\dp\presentationtitlebox\relax>.4\paperheight
+            \ifdim\wd\presentationtitlebox>\textwidth
+                \sbox{\presentationtitlebox}{\parbox{\textwidth}{\raggedright\LARGE\inserttitle}}%
+                \ifdim\dimexpr\ht\presentationtitlebox+\dp\presentationtitlebox\relax>.6\paperheight
                     \PackageWarning{presentation}{Long title reduced to fit the page}%
-                    \resizebox*{!}{.4\paperheight}{\usebox{\presentationtitlebox}}\par
+                    \resizebox*{!}{.6\paperheight}{\usebox{\presentationtitlebox}}\par
                 \else
                     \usebox{\presentationtitlebox}\par
                 \fi
