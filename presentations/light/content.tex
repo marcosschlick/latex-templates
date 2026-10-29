@@ -112,19 +112,19 @@
 {
     \setbeamertemplate{frametitle}{}
     \begin{frame}
-        \begin{tikzpicture}[remember picture,overlay]
-            \node[inner sep=0pt,font=\LARGE] at (current page.center) {The people come first.};
-        \end{tikzpicture}
+        \begin{SlideStatement}{The people come first.}
+        \end{SlideStatement}
         \note{Thor chooses to put the Asgardians first.}
     \end{frame}
 }
 
 \subsection{\prioritiestitle}
 \begin{frame}{\prioritiestitle}
-    \centering
+    \begin{SlideEmphasis}
     {\Large Asgard is not its golden halls. \keyphrase{It is its people.}\par}
     \medskip
     {\footnotesize From the royal archives: \citet{lore_thor,lore_loki,lore_asgard}.\par}
+    \end{SlideEmphasis}
     \note{Emphasize that Asgard lives through its people.}
 \end{frame}
 
@@ -167,42 +167,45 @@
 
 \subsection{\modeltitle}
 \begin{frame}[fragile]{\modeltitle}{An imagined count of those who escaped}
-    \begin{SlideCodeExplanation}
-        \begin{column}{0.46\textwidth}
-            \begin{Verbatim}[fontsize=\footnotesize]
+    \begin{SlideCenteredCode}
+        \begin{Verbatim}[fontsize=\footnotesize,numbers=left,numbersep=5pt]
 def protected_fraction(p, N):
     if N <= 0 or p < 0 or p > N:
         raise ValueError("Bad input")
     return p / N
 
-saved, total = 75, 100
-fraction = protected_fraction(saved, total)
-print(f"Saved: {fraction:.0%}")
-      \end{Verbatim}
-        \end{column}
-        \begin{column}{0.46\textwidth}
-            \textbf{This imagined tally} records the Asgardians who reach safety.
+def show_report(p, N):
+    fraction = protected_fraction(p, N)
+    remaining = N - p
+    print(f"Protected: {p} of {N}")
+    print(f"Remaining: {remaining}")
+    print(f"Protection rate: {fraction:.0%}")
 
-            \medskip
-            This is an imagined count, not a number given in the chronicle:
-            \[
-                r=\frac{p}{N},\qquad N>0,\quad 0\leq p\leq N.
-            \]
-        \end{column}
-    \end{SlideCodeExplanation}
+saved, total = 75, 100
+show_report(saved, total)
+      \end{Verbatim}
+    \end{SlideCenteredCode}
     \note{The 75 percent figure is an imagined example, not a historical count.}
 \end{frame}
 
 \begin{frame}{A Narrowing Window to Escape}{A hypothetical account of the flight from Asgard}
-    This imagined model estimates the chance of getting the Asgardians to safety:
+    Equation~\eqref{eq:asgard-escape} estimates the probability that the Asgardians reach safety.
+    \begin{SlideFormulaLegend}
+    {\Large
     \begin{equation}
         P(E)=\frac{1}{1+\exp[-(\alpha C-\gamma D)]},\qquad \alpha,\gamma>0.
-    \end{equation}
-    Here, $C$ is available transport capacity and $D$ is the time lost before the escape begins.
-    This model is imagined; the chronicle gives no exact evacuation data.
-
-    \medskip
-    Greater transport capacity and an earlier escape give more Asgardians a chance to survive Surtur's fire.
+        \label{eq:asgard-escape}
+    \end{equation}}
+    {\footnotesize\textbf{Equation~\ref{eq:asgard-escape}:} Logistic probability model\par}
+    \bigskip
+    {\footnotesize
+    \begin{tabular}{@{}cl@{}}
+        $P(E)$ & Chance of getting the Asgardians to safety\\
+        $C$ & Available transport capacity\\
+        $D$ & Time lost before the escape begins\\
+        $\alpha,\gamma$ & Positive weights\\
+    \end{tabular}}
+    \end{SlideFormulaLegend}
     \note{More transport and less delay improve the chance of escape in this imagined model.}
 \end{frame}
 
