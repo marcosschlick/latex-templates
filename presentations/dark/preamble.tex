@@ -142,11 +142,6 @@
     \begin{table}\centering
 }{\end{table}}
 
-% Use two native column environments inside SlideCodeExplanation.
-\newenvironment{SlideCodeExplanation}{%
-    \begin{columns}[c,onlytextwidth]
-}{\end{columns}}
-
 % Keep this command active through the end of a timeline frame.
 \newcommand{\SlideTimeline}{\centering}
 
@@ -154,6 +149,32 @@
 \newenvironment{SlideReferences}{%
     \footnotesize\renewcommand{\bibsection}{}
 }{}
+
+% \begin{SlideStatement}{statement}\end{SlideStatement}
+\newenvironment{SlideStatement}[1]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[inner sep=0pt,font=\LARGE] at (current page.center) {#1};
+    \end{tikzpicture}%
+}{}
+
+% \begin{SlideEmphasis}...text and citation...\end{SlideEmphasis}
+\newenvironment{SlideEmphasis}{%
+    \centering
+}{\par}
+
+% \begin{SlideCenteredCode}...code...\end{SlideCenteredCode}
+\newenvironment{SlideCenteredCode}{%
+    \begin{center}
+    \begin{minipage}{0.46\textwidth}
+}{%
+    \end{minipage}
+    \end{center}
+}
+
+% \begin{SlideFormulaLegend}...formula and legend...\end{SlideFormulaLegend}
+\newenvironment{SlideFormulaLegend}{%
+    \centering
+}{\par}
 
 % \primaryauthor{name} identifies and underlines the main author.
 \newcommand{\primaryauthor}[1]{\underline{#1}}
@@ -194,7 +215,6 @@
     \global\let\beamer@frametitle\relax
     \@ifnextchar\bgroup\beamer@inlineframetitle{}
 }
-\AtBeginPart{\beamer@tocsectionnumber=0\relax\setcounter{section}{0}}
 % Record the next slide number in each table-of-contents entry.
 \newcounter{tocframenumber}
 \newcommand{\tocdots}{\leavevmode\cleaders\hb@xt@ 0.8em{\hss.\hss}\hfill\kern\z@}
