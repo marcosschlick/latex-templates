@@ -15,14 +15,15 @@
 }
 
 \begin{frame}{\contentslabel}{From the fall of Asgard to the flight of its people}
-    \tableofcontents[subsectionstyle=show]
+    \begin{PresentationContents}
+    \end{PresentationContents}
     \note{Preview the move from exile to the Asgardians' escape.}
 \end{frame}
 
 \section{The Fall and Exile}
 \subsection{\lossestitle}
 \begin{frame}{\lossestitle}{Odin's death, Mjölnir's fall, and Hela's return}
-    \begin{columns}[c,onlytextwidth]
+    \begin{PresentationColumns}[c]
         \begin{column}{0.40\textwidth}
             \begin{itemize}
                 \item \textbf{Odin} is gone; the Allfather's reign has ended.
@@ -31,31 +32,28 @@
             \end{itemize}
         \end{column}
         \begin{column}{0.54\textwidth}
-            \begin{figure}
-                \centering
+            \begin{PresentationFigure}
                 % Scale to the specified height and crop any horizontal overflow.
                 \presentationimage{assets/hela_mjolnir.jpg}{4.2cm}{\linewidth}
                 \caption{Hela catches Mjölnir.}
-            \end{figure}
+            \end{PresentationFigure}
         \end{column}
-    \end{columns}
+    \end{PresentationColumns}
     \note{Thor loses Odin, Mjölnir, and his place in Asgard.}
 \end{frame}
 
 \subsection{\sakaartitle}
 \begin{frame}{\sakaartitle}{Thor's fall into the Grandmaster's arena}
-    \begin{figure}
-        \centering
+    \begin{PresentationFigure}
         % Scale to the specified height and crop any horizontal overflow.
         \presentationimage{assets/thor_hulk_arena.jpg}{5.2cm}{0.95\linewidth}
         \caption{Thor faces the Hulk in Sakaar's arena.}
-    \end{figure}
+    \end{PresentationFigure}
     \note{Thor's exile on Sakaar gives him a new path back.}
 \end{frame}
 
 \begin{frame}{A Kingdom Can Fall. Its People Can Live.}{A kingdom and its people are not the same thing}
-    \begin{figure}
-        \centering
+    \begin{PresentationFigure}
         \begin{subfigure}[t]{0.46\linewidth}
             \vspace{0pt}
             \centering
@@ -71,24 +69,23 @@
             \caption{Loki's uneasy alliance opens a path home.}
         \end{subfigure}
         \caption{On Sakaar, the brothers find a way back to the people under Hela's rule.}
-    \end{figure}
+    \end{PresentationFigure}
     \note{The brothers turn exile into a chance to help their people.}
 \end{frame}
 
 \subsubsection{Brothers at a Crossroads}
 \begin{frame}{Brothers at a Crossroads}{Old betrayals shadow their alliance}
-    \begin{figure}
-        \centering
+    \begin{PresentationFigure}
         % Scale to the specified height and crop any horizontal overflow.
         \presentationimage{assets/thor_loki_elevator.jpg}{5.2cm}{0.95\linewidth}
         \caption{Thor knows Loki may still choose his own escape.}
-    \end{figure}
+    \end{PresentationFigure}
     \note{Loki begins to choose alliance over his own escape.}
 \end{frame}
 
 \subsection{\decisionstitle}
 \begin{frame}{\decisionstitle}{Three losses and the choice to return}
-    \begin{columns}[T,onlytextwidth]
+    \begin{PresentationColumns}[T]
         \begin{column}{0.30\textwidth}
             \textbf{What Was Lost}
             \begin{itemize}
@@ -113,12 +110,12 @@
                 \item[People] Escape Asgard
             \end{description}
         \end{column}
-    \end{columns}
+    \end{PresentationColumns}
     \note{Thor chooses to save Asgard's people even if the kingdom is lost.}
 \end{frame}
 
 \begin{frame}{The Road to Exodus}{From Asgard's fall to the survivors' escape}
-    \centering
+    \PresentationTimeline
     \begin{tikzpicture}[
             stage/.style={draw=softblack,align=center,minimum width=3cm,minimum height=1cm},
             every node/.style={font=\small}]
@@ -152,8 +149,7 @@
 \end{frame}
 
 \begin{frame}{A King Without a Kingdom}{Thor learns that Asgard lives on in its people}
-    \begin{table}
-        \centering
+    \begin{PresentationTable}
         \caption{The path from Hela's return to the people's escape.}
         \setlength\extrarowheight{4pt}
         \begin{tabularx}{\linewidth}{lYY}
@@ -169,7 +165,7 @@
             Resolution & Asgard falls to Ragnarok & Carry its people into the stars\\
             \bottomrule
         \end{tabularx}
-    \end{table}
+    \end{PresentationTable}
     \note{Follow how each setback leads toward the people's escape.}
 \end{frame}
 
@@ -191,7 +187,7 @@
 
 \subsection{\modeltitle}
 \begin{frame}[fragile]{\modeltitle}{An imagined count of those who escaped}
-    \begin{columns}[c,onlytextwidth]
+    \begin{PresentationCodeColumns}
         \begin{column}{0.46\textwidth}
             \begin{Verbatim}[fontsize=\footnotesize]
 def protected_fraction(p, N):
@@ -213,7 +209,7 @@ print(f"Saved: {fraction:.0%}")
                 r=\frac{p}{N},\qquad N>0,\quad 0\leq p\leq N.
             \]
         \end{column}
-    \end{columns}
+    \end{PresentationCodeColumns}
     \note{The 75 percent figure is an imagined example, not a historical count.}
 \end{frame}
 
@@ -233,9 +229,9 @@ print(f"Saved: {fraction:.0%}")
 \section{\referenceslabel}
 \setbeamertemplate{frametitle continuation}[from second]
 \begin{frame}[allowframebreaks]{\referenceslabel}{Records of Asgard's fall and the survivors' flight}
-    \footnotesize
-    \renewcommand{\bibsection}{}
+    \begin{PresentationReferences}
     \bibliographystyle{plainnat}
     \bibliography{references}
+    \end{PresentationReferences}
     \note{Point to the sources listed here for the chronicle.}
 \end{frame}
