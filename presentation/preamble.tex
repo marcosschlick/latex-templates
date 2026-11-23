@@ -43,46 +43,62 @@
 \definecolor{darkblue}{HTML}{324B64}
 \definecolor{lightblue}{HTML}{9EC4D9}
 \definecolor{vibrantblue}{HTML}{327DE1}
-\newcommand{\keyphrase}[1]{\textcolor{lightblue}{#1}}
-\newcommand{\highlightrow}{\rowcolor{darkblue}}
+% Select the foreground, background, and accent colors for the chosen theme.
+\ifnum\pdfstrcmp{\presentationtheme}{light}=0
+    \colorlet{presentationtext}{softblack}
+    \colorlet{presentationbackground}{offwhite}
+    \colorlet{presentationaccent}{darkblue}
+    \colorlet{presentationhighlight}{lightblue}
+\else
+    \ifnum\pdfstrcmp{\presentationtheme}{dark}=0
+        \colorlet{presentationtext}{offwhite}
+        \colorlet{presentationbackground}{softblack}
+        \colorlet{presentationaccent}{lightblue}
+        \colorlet{presentationhighlight}{darkblue}
+    \else
+        \PackageError{presentation}{Unknown presentation theme '\presentationtheme'}{Choose light or dark in main.tex.}
+    \fi
+\fi
+\newcommand{\keyphrase}[1]{\textcolor{presentationaccent}{#1}}
+\newcommand{\highlightrow}{\rowcolor{presentationhighlight}}
 \tikzset{
     progress arrow/.style={->,draw=vibrantblue},
     final stage/.style={draw=vibrantblue}
 }
 
-\setbeamercolor{normal text}{fg=offwhite,bg=softblack}
-\setbeamercolor{background canvas}{bg=softblack}
-\setbeamercolor{palette primary}{fg=offwhite,bg=softblack}
-\setbeamercolor{palette secondary}{fg=offwhite,bg=softblack}
-\setbeamercolor{palette tertiary}{fg=offwhite,bg=softblack}
-\setbeamercolor{palette quaternary}{fg=offwhite,bg=softblack}
-\setbeamercolor{structure}{fg=offwhite}
-\setbeamercolor{item}{fg=offwhite}
-\setbeamercolor{title}{fg=offwhite}
-\setbeamercolor{author}{fg=offwhite}
-\setbeamercolor{institute}{fg=offwhite}
-\setbeamercolor{frametitle}{fg=offwhite}
-\setbeamercolor{framesubtitle}{fg=offwhite}
-\setbeamercolor{page number in head/foot}{fg=offwhite}
-\setbeamercolor{alerted text}{fg=offwhite}
-\setbeamercolor{example text}{fg=offwhite}
-\setbeamercolor{section in toc}{fg=offwhite}
-\setbeamercolor{subsection in toc}{fg=offwhite}
-\setbeamercolor{subsubsection in toc}{fg=offwhite}
-\setbeamercolor{caption}{fg=offwhite}
-\setbeamercolor{caption name}{fg=offwhite}
-\setbeamercolor{footnote mark}{fg=offwhite}
-\setbeamercolor{block title}{fg=offwhite,bg=softblack}
-\setbeamercolor{block body}{fg=offwhite,bg=softblack}
-\setbeamercolor{block title alerted}{fg=offwhite,bg=softblack}
-\setbeamercolor{block body alerted}{fg=offwhite,bg=softblack}
-\setbeamercolor{block title example}{fg=offwhite,bg=softblack}
-\setbeamercolor{block body example}{fg=offwhite,bg=softblack}
-\setbeamercolor{bibliography entry author}{fg=offwhite}
-\setbeamercolor{bibliography entry title}{fg=offwhite}
-\setbeamercolor{bibliography entry location}{fg=offwhite}
-\setbeamercolor{bibliography entry note}{fg=offwhite}
-\hypersetup{colorlinks=true,urlcolor=offwhite,citecolor=offwhite,linkcolor=offwhite,filecolor=offwhite,pdfdisplaydoctitle=true}
+\setbeamercolor{normal text}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{background canvas}{bg=presentationbackground}
+\setbeamercolor{palette primary}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{palette secondary}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{palette tertiary}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{palette quaternary}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{structure}{fg=presentationtext}
+\setbeamercolor{item}{fg=presentationtext}
+\setbeamercolor{title}{fg=presentationtext}
+\setbeamercolor{author}{fg=presentationtext}
+\setbeamercolor{institute}{fg=presentationtext}
+\setbeamercolor{frametitle}{fg=presentationtext}
+\setbeamercolor{framesubtitle}{fg=presentationtext}
+\setbeamercolor{page number in head/foot}{fg=presentationtext}
+\setbeamercolor{alerted text}{fg=presentationtext}
+\setbeamercolor{example text}{fg=presentationtext}
+\setbeamercolor{section in toc}{fg=presentationtext}
+\setbeamercolor{subsection in toc}{fg=presentationtext}
+\setbeamercolor{subsubsection in toc}{fg=presentationtext}
+\setbeamercolor{caption}{fg=presentationtext}
+\setbeamercolor{caption name}{fg=presentationtext}
+\setbeamercolor{footnote mark}{fg=presentationtext}
+\setbeamercolor{block title}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{block body}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{block title alerted}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{block body alerted}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{block title example}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{block body example}{fg=presentationtext,bg=presentationbackground}
+\setbeamercolor{bibliography entry author}{fg=presentationtext}
+\setbeamercolor{bibliography entry title}{fg=presentationtext}
+\setbeamercolor{bibliography entry location}{fg=presentationtext}
+\setbeamercolor{bibliography entry note}{fg=presentationtext}
+\hypersetup{colorlinks=true,urlcolor=presentationtext,citecolor=presentationtext,linkcolor=presentationtext,filecolor=presentationtext,pdfdisplaydoctitle=true}
 
 % Reusable text and table commands.
 \newcommand{\samelineand}{\qquad}
@@ -312,7 +328,7 @@
 % The notes entry point enables a second screen on the right.
 \ifnotes
     \setbeamerfont{note page}{size=\Large}
-    \setbeamercolor{note page}{fg=offwhite}
+    \setbeamercolor{note page}{fg=presentationtext}
     \newsavebox{\presentationnotebox}
     \setbeamertemplate{note page}{%
         \sbox{\presentationnotebox}{%
@@ -322,7 +338,7 @@
             \end{tikzpicture}%
         }%
         \begin{tikzpicture}[remember picture,overlay]
-            \fill[softblack] (current page.south west) rectangle (current page.north east);
+            \fill[presentationbackground] (current page.south west) rectangle (current page.north east);
             \node[inner sep=0pt] at (current page.center) {%
                 \ifdim\dimexpr\ht\presentationnotebox+\dp\presentationnotebox\relax>\dimexpr\paperheight-20mm\relax
                     \PackageWarning{presentation}{Long speaker note reduced to fit the page}%
