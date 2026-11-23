@@ -1,0 +1,217 @@
+% Shared options for presentation slides.
+\ExplSyntaxOn
+\keys_define:nn { presentationslide }
+    {
+        title .tl_set:N = \slidetitle,
+        subtitle .tl_set:N = \slidesubtitle,
+        note .tl_set:N = \slidenote,
+        image .tl_set:N = \slideimage,
+        image1 .tl_set:N = \slideimageone,
+        image2 .tl_set:N = \slideimagetwo,
+        caption .tl_set:N = \slidecaption,
+        caption1 .tl_set:N = \slidecaptionone,
+        caption2 .tl_set:N = \slidecaptiontwo,
+        source .tl_set:N = \slidesource,
+        source1 .tl_set:N = \slidesourceone,
+        source2 .tl_set:N = \slidesourcetwo,
+        bibliography .tl_set:N = \slidebibliography,
+        style .tl_set:N = \slidebibliographystyle,
+        height .tl_set:N = \slideheight
+    }
+\NewDocumentCommand{\slidesetup}{m}
+    { \keys_set:nn { presentationslide } { #1 } }
+\ExplSyntaxOff
+
+% Display an optional source below an image or table.
+\newcommand{\showslidesource}[1]{%
+    \ifx#1\empty\else
+        {\footnotesize\sourcelabel: #1\par}%
+    \fi
+}
+
+% Use the current section, subsection, or subsubsection when no title is supplied.
+\newcommand{\slideheading}{%
+    \ifx\slidetitle\empty
+        \ifx\insertsubsubsectionhead\empty
+            \ifx\insertsubsectionhead\empty
+                \frametitle{\insertsectionhead}
+            \else
+                \frametitle{\insertsubsectionhead}
+            \fi
+        \else
+            \frametitle{\insertsubsubsectionhead}
+        \fi
+    \else
+        \frametitle{\slidetitle}
+    \fi
+    \framesubtitle{\slidesubtitle}%
+}
+
+% Content slides share a heading and an optional speaker note.
+\newcommand{\slideframe}[2]{%
+    \slidesetup{#1}%
+    \begin{frame}
+        \slideheading
+        #2
+        \note{\slidenote}
+    \end{frame}%
+}
+
+% \presentationimage{file}{height}{maximum width}
+\newsavebox{\presentationimagebox}
+\newlength{\presentationimagemaxwidth}
+\newcommand{\presentationimage}[3]{%
+    \begingroup
+    \sbox{\presentationimagebox}{\includegraphics[height=#2]{#1}}%
+    \setlength{\presentationimagemaxwidth}{#3}%
+    \ifdim\wd\presentationimagebox>\presentationimagemaxwidth
+        \begin{tikzpicture}[baseline=0pt]
+            \clip[use as bounding box] (-.5\presentationimagemaxwidth,0)
+                rectangle (.5\presentationimagemaxwidth,#2);
+            \node[anchor=south,inner sep=0pt,outer sep=0pt] at (0,0) {\usebox{\presentationimagebox}};
+        \end{tikzpicture}%
+    \else
+        \usebox{\presentationimagebox}%
+    \fi
+    \endgroup
+}
+
+% Bullet list beside an image.
+\NewDocumentEnvironment{BulletImageSlide}{O{} +b}{%
+    \slideframe{height=4.2cm, #1}{%
+        \begin{columns}[c,onlytextwidth]
+            \begin{column}{0.40\textwidth}
+                \begin{itemize}#2\end{itemize}
+            \end{column}
+            \begin{column}{0.54\textwidth}
+                \begin{figure}
+                    \centering
+                    \presentationimage{\slideimage}{\slideheight}{\linewidth}
+                    \caption{\slidecaption}
+                    \showslidesource{\slidesource}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    }%
+}{}
+
+% Title slide with an optional speaker note.
+\NewDocumentCommand{\TitleSlide}{O{}}{%
+    \begingroup
+    \slidesetup{#1}%
+    \begin{frame}[plain,noframenumbering]
+        \titlepage
+        \note{\slidenote}
+    \end{frame}
+    \endgroup
+}
+
+% Table of contents with an optional subtitle and speaker note.
+\NewDocumentCommand{\ContentsSlide}{O{}}{%
+    \begingroup
+    \slidesetup{#1}%
+    \begin{frame}{\contentsname}{\slidesubtitle}
+        \tableofcontents[subsectionstyle=show]
+        \note{\slidenote}
+    \end{frame}
+    \endgroup
+}
+
+% A single image scaled to its height and cropped to the available width.
+\NewDocumentCommand{\ImageSlide}{O{}}{%
+    \begingroup
+    \slideframe{height=5.2cm, #1}{%
+        \begin{figure}
+            \centering
+            \presentationimage{\slideimage}{\slideheight}{0.95\linewidth}
+            \caption{\slidecaption}
+            \showslidesource{\slidesource}
+        \end{figure}
+    }%
+    \endgroup
+}
+
+% One panel of an image pair.
+\newcommand{\slideimagepanel}[3]{%
+    \begin{subfigure}[t]{0.46\linewidth}
+        \vspace{0pt}\centering
+        \presentationimage{#1}{\slideheight}{\linewidth}
+        \caption{#2}
+        \showslidesource{#3}
+    \end{subfigure}%
+}
+
+% Two images with individual captions and an optional shared caption.
+\NewDocumentCommand{\ImagePairSlide}{O{}}{%
+    \begingroup
+    \slideframe{height=3.8cm, #1}{%
+        \begin{figure}\centering
+            \slideimagepanel{\slideimageone}{\slidecaptionone}{\slidesourceone}%
+            \hfill
+            \slideimagepanel{\slideimagetwo}{\slidecaptiontwo}{\slidesourcetwo}%
+            \ifx\slidecaption\empty\else\caption{\slidecaption}\fi
+            \showslidesource{\slidesource}
+        \end{figure}
+    }%
+    \endgroup
+}
+
+% Centered content with an optional title, subtitle, and speaker note.
+\NewDocumentEnvironment{EmphasisSlide}{O{} +b}{%
+    \slideframe{#1}{%
+        \centering
+        #2\par
+    }%
+}{}
+
+% References with automatic continuation across slides.
+\NewDocumentCommand{\ReferencesSlide}{O{}}{%
+    \begingroup
+    \slidesetup{bibliography=references, style=plainnat, #1}%
+    \setbeamertemplate{frametitle continuation}[from second]
+    \begin{frame}[allowframebreaks]{\refname}{\slidesubtitle}
+        \footnotesize\renewcommand{\bibsection}{}
+        \bibliographystyle{\slidebibliographystyle}
+        \bibliography{\slidebibliography}
+        \note{\slidenote}
+    \end{frame}
+    \endgroup
+}
+
+% A table with a caption and freely formatted rows.
+\NewDocumentEnvironment{TableSlide}{O{} +b}{%
+    \slideframe{#1}{%
+        \begin{table}\centering
+            \caption{\slidecaption}
+            #2
+            \showslidesource{\slidesource}
+        \end{table}
+    }%
+}{}
+
+% A slide with a list of text.
+\NewDocumentEnvironment{TextSlide}{O{} +b}{%
+    \slideframe{#1}{%
+        \begin{itemize}
+            \setlength\itemsep{3ex}
+            #2
+        \end{itemize}
+    }%
+}{}
+
+% A fragile frame for verbatim code entered directly in the slide.
+\newenvironment{CodeSlide}[1][]{%
+    \slidesetup{#1}%
+    \begin{frame}[fragile,environment=CodeSlide]
+        \slideheading
+        \begin{center}\begin{minipage}{0.46\textwidth}
+}{%
+        \end{minipage}\end{center}
+        \note{\slidenote}
+    \end{frame}
+}
+
+% A slide with freely formatted formulas and legends.
+\NewDocumentEnvironment{FormulaSlide}{O{} +b}{%
+    \slideframe{#1}{#2}%
+}{}

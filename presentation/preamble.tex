@@ -3,10 +3,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[main=english]{babel}
+\babelprovide[import]{english}
 \babelprovide[import]{brazilian}
 \babelprovide[import]{spanish}
 \usepackage{xpatch}
-\usepackage{pgfpages}
 \usepackage{fancyvrb}
 \usepackage{tikz}
 \usepackage{booktabs}
@@ -25,82 +25,56 @@
 \setbeamerfont{institute}{size=\footnotesize}
 \setbeamerfont{frametitle}{size=\large,series=\bfseries}
 \setbeamerfont{framesubtitle}{size=\small,series=\mdseries}
-\setbeamerfont{part title}{size=\Large,series=\mdseries}
 \setbeamerfont{caption}{size=\footnotesize}
 \setbeamerfont{caption name}{series=\bfseries}
 \setbeamerfont{footline}{size=\fontsize{6}{7}\selectfont}
 \setbeamerfont{footnote}{size=\tiny}
-\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
-\setbeamerfont{block body}{size=\normalsize}
 \setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
 \setbeamerfont{section in toc}{size=\normalsize,series=\bfseries}
 \setbeamerfont{subsection in toc}{size=\small}
-\setbeamerfont{subsubsection in toc}{size=\footnotesize}
 
 % Shared palette: off-white, soft black, and blue accents.
 \definecolor{offwhite}{HTML}{F8F8F8}
 \definecolor{softblack}{HTML}{282828}
 \definecolor{darkblue}{HTML}{324B64}
 \definecolor{lightblue}{HTML}{9EC4D9}
-\definecolor{vibrantblue}{HTML}{327DE1}
+\definecolor{tablelightblue}{HTML}{C8E1FA}
 % Select the foreground, background, and accent colors for the chosen theme.
 \ifnum\pdfstrcmp{\presentationtheme}{light}=0
     \colorlet{presentationtext}{softblack}
     \colorlet{presentationbackground}{offwhite}
     \colorlet{presentationaccent}{darkblue}
-    \colorlet{presentationhighlight}{lightblue}
+    \colorlet{presentationtableheader}{tablelightblue}
+    \colorlet{presentationhighlight}{darkblue}
 \else
     \ifnum\pdfstrcmp{\presentationtheme}{dark}=0
         \colorlet{presentationtext}{offwhite}
         \colorlet{presentationbackground}{softblack}
         \colorlet{presentationaccent}{lightblue}
-        \colorlet{presentationhighlight}{darkblue}
+        \colorlet{presentationtableheader}{darkblue}
+        \colorlet{presentationhighlight}{tablelightblue}
     \else
         \PackageError{presentation}{Unknown presentation theme '\presentationtheme'}{Choose light or dark in main.tex.}
     \fi
 \fi
-\newcommand{\keyphrase}[1]{\textcolor{presentationaccent}{#1}}
-\newcommand{\highlightrow}{\rowcolor{presentationhighlight}}
-\tikzset{
-    progress arrow/.style={->,draw=vibrantblue},
-    final stage/.style={draw=vibrantblue}
-}
 
 \setbeamercolor{normal text}{fg=presentationtext,bg=presentationbackground}
-\setbeamercolor{background canvas}{bg=presentationbackground}
-\setbeamercolor{palette primary}{fg=presentationtext,bg=presentationbackground}
-\setbeamercolor{palette secondary}{fg=presentationtext,bg=presentationbackground}
-\setbeamercolor{palette tertiary}{fg=presentationtext,bg=presentationbackground}
-\setbeamercolor{palette quaternary}{fg=presentationtext,bg=presentationbackground}
 \setbeamercolor{structure}{fg=presentationtext}
-\setbeamercolor{item}{fg=presentationtext}
-\setbeamercolor{title}{fg=presentationtext}
-\setbeamercolor{author}{fg=presentationtext}
-\setbeamercolor{institute}{fg=presentationtext}
-\setbeamercolor{frametitle}{fg=presentationtext}
-\setbeamercolor{framesubtitle}{fg=presentationtext}
-\setbeamercolor{page number in head/foot}{fg=presentationtext}
-\setbeamercolor{alerted text}{fg=presentationtext}
-\setbeamercolor{example text}{fg=presentationtext}
-\setbeamercolor{section in toc}{fg=presentationtext}
-\setbeamercolor{subsection in toc}{fg=presentationtext}
-\setbeamercolor{subsubsection in toc}{fg=presentationtext}
-\setbeamercolor{caption}{fg=presentationtext}
-\setbeamercolor{caption name}{fg=presentationtext}
-\setbeamercolor{footnote mark}{fg=presentationtext}
-\setbeamercolor{block title}{fg=presentationtext,bg=presentationbackground}
-\setbeamercolor{block body}{fg=presentationtext,bg=presentationbackground}
-\setbeamercolor{block title alerted}{fg=presentationtext,bg=presentationbackground}
-\setbeamercolor{block body alerted}{fg=presentationtext,bg=presentationbackground}
-\setbeamercolor{block title example}{fg=presentationtext,bg=presentationbackground}
-\setbeamercolor{block body example}{fg=presentationtext,bg=presentationbackground}
-\setbeamercolor{bibliography entry author}{fg=presentationtext}
-\setbeamercolor{bibliography entry title}{fg=presentationtext}
 \setbeamercolor{bibliography entry location}{fg=presentationtext}
 \setbeamercolor{bibliography entry note}{fg=presentationtext}
-\hypersetup{colorlinks=true,urlcolor=presentationtext,citecolor=presentationtext,linkcolor=presentationtext,filecolor=presentationtext,pdfdisplaydoctitle=true}
+\hypersetup{
+    colorlinks=true,
+    allcolors=presentationtext,
+    pdfdisplaydoctitle=true
+}
 
 % Reusable text and table commands.
+\newcommand{\keyphrase}[1]{\textcolor{presentationaccent}{#1}}
+\newcommand{\highlightrow}{\rowcolor{presentationhighlight}}
+\newcommand{\highlighttext}[1]{\textcolor{presentationbackground}{\textbf{#1}}}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% Number affiliations when the author lists more than one.
 \newcounter{presentationinstitute}
 \newcommand{\nextinstitute}{\qquad\stepcounter{presentationinstitute}\inst{\arabic{presentationinstitute}}}
 \makeatletter
@@ -115,123 +89,12 @@
     \fi
 }
 \makeatother
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
-
-% \begin{SlideContents}...\end{SlideContents}
-\newenvironment{SlideContents}{%
-    \tableofcontents[subsectionstyle=show]
-}{}
-
-% \begin{SlideBulletsPhoto}{file}{height}{caption}...bullets...\end{SlideBulletsPhoto}
-\newenvironment{SlideBulletsPhoto}[3]{%
-    \def\slidebulletsphotofile{#1}%
-    \def\slidebulletsphotoheight{#2}%
-    \def\slidebulletsphotocaption{#3}%
-    \begin{columns}[c,onlytextwidth]
-    \begin{column}{0.40\textwidth}
-}{%
-    \end{column}%
-    \begin{column}{0.54\textwidth}
-        \begin{figure}
-            \centering
-            \presentationimage{\slidebulletsphotofile}{\slidebulletsphotoheight}{\linewidth}
-            \caption{\slidebulletsphotocaption}
-        \end{figure}
-    \end{column}%
-    \end{columns}%
-}
-
-% \begin{SlideTitlePhoto}{file}{height}{maximum width}...caption...\end{SlideTitlePhoto}
-\newenvironment{SlideTitlePhoto}[3]{%
-    \begin{figure}
-        \centering
-        \presentationimage{#1}{#2}{#3}%
-}{\end{figure}}
-
-% \begin{SlidePhotoPair}...\SlidePhotoPanel{file}{height}{caption}...\end{SlidePhotoPair}
-\newenvironment{SlidePhotoPair}{%
-    \begin{figure}\centering
-}{\end{figure}}
-\newcommand{\SlidePhotoPanel}[3]{%
-    \begin{subfigure}[t]{0.46\linewidth}
-        \vspace{0pt}
-        \centering
-        \presentationimage{#1}{#2}{\linewidth}
-        \caption{#3}
-    \end{subfigure}%
-}
-
-% Use native column environments inside SlideThreeColumns for each fixed-width column.
-\newenvironment{SlideThreeColumns}{%
-    \begin{columns}[T,onlytextwidth]
-}{\end{columns}}
-
-% \begin{SlideTable}...caption and tabular...\end{SlideTable}
-\newenvironment{SlideTable}{%
-    \begin{table}\centering
-}{\end{table}}
-
-% Keep this command active through the end of a timeline frame.
-\newcommand{\SlideTimeline}{\centering}
-
-% \begin{SlideReferences}...bibliography...\end{SlideReferences}
-\newenvironment{SlideReferences}{%
-    \footnotesize\renewcommand{\bibsection}{}
-}{}
-
-% \begin{SlideStatement}{statement}\end{SlideStatement}
-\newenvironment{SlideStatement}[1]{%
-    \begin{tikzpicture}[remember picture,overlay]
-        \node[inner sep=0pt,font=\LARGE] at (current page.center) {#1};
-    \end{tikzpicture}%
-}{}
-
-% \begin{SlideEmphasis}...text and citation...\end{SlideEmphasis}
-\newenvironment{SlideEmphasis}{%
-    \centering
-}{\par}
-
-% \begin{SlideCenteredCode}...code...\end{SlideCenteredCode}
-\newenvironment{SlideCenteredCode}{%
-    \begin{center}
-    \begin{minipage}{0.46\textwidth}
-}{%
-    \end{minipage}
-    \end{center}
-}
-
-% \begin{SlideFormulaLegend}...formula and legend...\end{SlideFormulaLegend}
-\newenvironment{SlideFormulaLegend}{%
-    \centering
-}{\par}
 
 % \primaryauthor{name} identifies and underlines the main author.
 \newcommand{\primaryauthor}[1]{\underline{#1}}
 
-% \presentationimage{file}{height}{maximum width}
-\newsavebox{\presentationimagebox}
-\newlength{\presentationimagemaxwidth}
-\newcommand{\presentationimage}[3]{%
-    \begingroup
-    \sbox{\presentationimagebox}{\includegraphics[height=#2]{#1}}%
-    \setlength{\presentationimagemaxwidth}{#3}%
-    \ifdim\wd\presentationimagebox>\presentationimagemaxwidth
-        \begin{tikzpicture}[baseline=0pt]
-            \path[use as bounding box] (-.5\presentationimagemaxwidth,0)
-                rectangle (.5\presentationimagemaxwidth,#2);
-            \clip (-.5\presentationimagemaxwidth,0) rectangle (.5\presentationimagemaxwidth,#2);
-            \node[anchor=south,inner sep=0pt,outer sep=0pt] at (0,0) {\usebox{\presentationimagebox}};
-        \end{tikzpicture}%
-    \else
-        \usebox{\presentationimagebox}%
-    \fi
-    \endgroup
-}
-
 % List markers and internal Beamer adjustments.
-\setbeamertemplate{itemize item}[circle]
-\setbeamertemplate{itemize subitem}[circle]
-\setbeamertemplate{itemize subsubitem}[circle]
+\setbeamertemplate{itemize items}[circle]
 \makeatletter
 % Keep author-year citations linked across line breaks.
 \def\hyper@natlinkbreak#1#2{\hyper@linkend#1\hyper@linkstart{cite}{cite.#2}}
@@ -245,27 +108,19 @@
     \@ifnextchar\bgroup\beamer@inlineframetitle{}
 }
 % Record the next slide number in each table-of-contents entry.
-\newcounter{tocframenumber}
-\newcommand{\tocdots}{\leavevmode\cleaders\hb@xt@ 0.8em{\hss.\hss}\hfill\kern\z@}
+\newcommand{\tocslidenumber}{%
+    \leavevmode\cleaders\hb@xt@ 0.8em{\hss.\hss}\hfill\kern\z@
+    \the\numexpr\value{framenumber}+1\relax
+}
 \patchcmd{\beamer@section}
-    {\addtocontents{toc}{\protect\beamer@sectionintoc{\the\c@section}{#2}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
-    {\setcounter{tocframenumber}{\value{framenumber}}\stepcounter{tocframenumber}\addtocontents{toc}{\protect\beamer@sectionintoc{\the\c@section}{#2\tocdots\thetocframenumber}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {{#2}{\the\c@page}}{{#2\tocslidenumber}{\the\c@page}}
     {}{\PackageError{presentation}{Could not patch section entries}{Check the installed Beamer version.}}
 \patchcmd{\beamer@subsection}
-    {\addtocontents{toc}{\protect\beamer@subsectionintoc{\the\c@section}{\the\c@subsection}{#2}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
-    {\setcounter{tocframenumber}{\value{framenumber}}\stepcounter{tocframenumber}\addtocontents{toc}{\protect\beamer@subsectionintoc{\the\c@section}{\the\c@subsection}{#2\tocdots\thetocframenumber}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {{#2}{\the\c@page}}{{#2\tocslidenumber}{\the\c@page}}
     {}{\PackageError{presentation}{Could not patch subsection entries}{Check the installed Beamer version.}}
 \patchcmd{\beamer@subsubsection}
-    {\addtocontents{toc}{\protect\beamer@subsubsectionintoc{\the\c@section}{\the\c@subsection}{\the\c@subsubsection}{#2}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
-    {\setcounter{tocframenumber}{\value{framenumber}}\stepcounter{tocframenumber}\addtocontents{toc}{\protect\beamer@subsubsectionintoc{\the\c@section}{\the\c@subsection}{\the\c@subsubsection}{#2\tocdots\thetocframenumber}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {{#2}{\the\c@page}}{{#2\tocslidenumber}{\the\c@page}}
     {}{\PackageError{presentation}{Could not patch subsubsection entries}{Check the installed Beamer version.}}
-\ifnotes
-    % The slide already has page anchors; do not duplicate them on the notes page.
-    \xpatchcmd{\beamer@outsideframenote}
-        {\begingroup}
-        {\begingroup\let\Hy@EveryPageAnchor\@empty}
-        {}{\PackageWarning{presentation}{Could not suppress duplicate notes anchors}}
-\fi
 \makeatother
 
 % Captions, navigation, and slide layout.
@@ -275,7 +130,6 @@
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}[period]
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{blocks}[default]
 \setbeamertemplate{section in toc}[sections numbered]
 \setbeamertemplate{subsection in toc}{
     \leavevmode\leftskip=3em
@@ -298,13 +152,10 @@
                 \sbox{\presentationtitlebox}{\parbox{\textwidth}{\raggedright\LARGE\inserttitle}}%
                 \ifdim\dimexpr\ht\presentationtitlebox+\dp\presentationtitlebox\relax>.6\paperheight
                     \PackageWarning{presentation}{Long title reduced to fit the page}%
-                    \resizebox*{!}{.6\paperheight}{\usebox{\presentationtitlebox}}\par
-                \else
-                    \usebox{\presentationtitlebox}\par
+                    \sbox{\presentationtitlebox}{\resizebox*{!}{.6\paperheight}{\usebox{\presentationtitlebox}}}%
                 \fi
-            \else
-                \usebox{\presentationtitlebox}\par
-            \fi}
+            \fi
+            \usebox{\presentationtitlebox}\par}
         \medskip
         {\usebeamerfont{subtitle}\insertsubtitle\par}
         \bigskip
@@ -339,7 +190,15 @@
 }
 
 % The notes entry point enables a second screen on the right.
-\ifnotes
+\ifdefined\notesversion
+    \usepackage{pgfpages}
+    \makeatletter
+    % The slide already has page anchors; do not duplicate them on the notes page.
+    \xpatchcmd{\beamer@outsideframenote}
+        {\begingroup}
+        {\begingroup\let\Hy@EveryPageAnchor\@empty}
+        {}{\PackageWarning{presentation}{Could not suppress duplicate notes anchors}}
+    \makeatother
     \setbeamerfont{note page}{size=\Large}
     \setbeamercolor{note page}{fg=presentationtext}
     \newsavebox{\presentationnotebox}
@@ -367,36 +226,7 @@
 
 \pdfstringdefDisableCommands{\def\inst#1{}\def\and{, }\def\underline#1{#1}\def\primaryauthor#1{#1}\def\nextinstitute{; }}
 
-% Localized section labels follow the explicitly selected document language.
-% Imported Babel languages can share a hyphenation identifier, so compare names.
-\newcommand{\ifpresentationlanguage}[3]{%
-    \ifnum\pdfstrcmp{\languagename}{#1}=0 #2\else #3\fi
-}
-\newcommand{\contentslabel}{%
-    \ifpresentationlanguage{brazilian}{Sumário}{%
-        \ifpresentationlanguage{spanish}{Índice}{Contents}%
-    }%
-}
-\newcommand{\referenceslabel}{%
-    \ifpresentationlanguage{brazilian}{Referências}{%
-        \ifpresentationlanguage{spanish}{Referencias}{References}%
-    }%
-}
-
-% Format the presentation date in the selected document language.
-\newcommand{\presentationmonthname}{%
-    \ifpresentationlanguage{english}{%
-        \ifcase\presentationdatemonth\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi
-    }{\ifpresentationlanguage{brazilian}{%
-        \ifcase\presentationdatemonth\or janeiro\or fevereiro\or março\or abril\or maio\or junho\or julho\or agosto\or setembro\or outubro\or novembro\or dezembro\fi
-    }{%
-        \ifcase\presentationdatemonth\or enero\or febrero\or marzo\or abril\or mayo\or junio\or julio\or agosto\or septiembre\or octubre\or noviembre\or diciembre\fi
-    }}%
-}
-\newcommand{\presentationdate}{%
-    \ifpresentationlanguage{english}{%
-        \presentationmonthname\space\presentationdateday, \presentationdateyear
-    }{%
-        \presentationdateday\space de\space\presentationmonthname\space de\space\presentationdateyear
-    }%
-}
+% Localize the source label for images and tables.
+\addto\captionsbrazilian{\def\sourcelabel{Fonte}}
+\addto\captionsspanish{\def\sourcelabel{Fuente}}
+\addto\captionsenglish{\def\sourcelabel{Source}}
