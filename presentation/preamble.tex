@@ -101,7 +101,20 @@
 \hypersetup{colorlinks=true,urlcolor=presentationtext,citecolor=presentationtext,linkcolor=presentationtext,filecolor=presentationtext,pdfdisplaydoctitle=true}
 
 % Reusable text and table commands.
-\newcommand{\samelineand}{\qquad}
+\newcounter{presentationinstitute}
+\newcommand{\nextinstitute}{\qquad\stepcounter{presentationinstitute}\inst{\arabic{presentationinstitute}}}
+\makeatletter
+\let\presentationinstitutecommand\institute
+\renewcommand{\institute}[1]{%
+    \in@{\nextinstitute}{#1}%
+    \ifin@
+        \presentationinstitutecommand{\setcounter{presentationinstitute}{1}\inst{1}#1}%
+    \else
+        \let\beamer@insttitle\@gobble
+        \presentationinstitutecommand{#1}%
+    \fi
+}
+\makeatother
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
 % \begin{SlideContents}...\end{SlideContents}
@@ -352,6 +365,6 @@
     \setbeameroption{show notes on second screen=right}
 \fi
 
-\pdfstringdefDisableCommands{\def\inst#1{}\def\and{, }\def\underline#1{#1}\def\primaryauthor#1{#1}\def\samelineand{; }}
+\pdfstringdefDisableCommands{\def\inst#1{}\def\and{, }\def\underline#1{#1}\def\primaryauthor#1{#1}\def\nextinstitute{; }}
 
 \input{sections.tex}
