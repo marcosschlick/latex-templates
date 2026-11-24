@@ -14,8 +14,6 @@
         source .tl_set:N = \slidesource,
         source1 .tl_set:N = \slidesourceone,
         source2 .tl_set:N = \slidesourcetwo,
-        bibliography .tl_set:N = \slidebibliography,
-        style .tl_set:N = \slidebibliographystyle,
         height .tl_set:N = \slideheight
     }
 \NewDocumentCommand{\slidesetup}{m}
@@ -155,12 +153,11 @@
 % References with automatic continuation across slides.
 \NewDocumentCommand{\ReferencesSlide}{O{}}{%
     \begingroup
-    \slidesetup{bibliography=references, style=plainnat, #1}%
+    \slidesetup{#1}%
     \setbeamertemplate{frametitle continuation}[from second]
     \begin{frame}[allowframebreaks]{\refname}{\slidesubtitle}
-        \footnotesize\renewcommand{\bibsection}{}
-        \bibliographystyle{\slidebibliographystyle}
-        \bibliography{\slidebibliography}
+        \renewcommand*{\bibfont}{\footnotesize}%
+        \printbibliography[heading=none]
         \note{\slidenote}
     \end{frame}
     \endgroup

@@ -13,7 +13,18 @@
 \usepackage{colortbl}
 \usepackage{tabularx}
 \usepackage{subcaption}
-\usepackage[authoryear,round]{natbib}
+\usepackage[backend=biber,style=authoryear,natbib=true,
+    maxcitenames=2,mincitenames=1,uniquelist=false]{biblatex}
+\addbibresource{references.bib}
+
+% \cite uses brackets; \citep and \citet use the parenthetical and textual forms.
+\DeclareDelimFormat[cite]{nameyeardelim}{\addspace}
+\DeclareDelimFormat[parencite]{nameyeardelim}{\addcomma\space}
+\DeclareCiteCommand{\cite}[\mkbibbrackets]
+    {\usebibmacro{prenote}}
+    {\usebibmacro{citeindex}\usebibmacro{cite}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
 
 % Typography and slide margins.
 \usefonttheme{serif}
@@ -99,8 +110,6 @@
 % List markers and internal Beamer adjustments.
 \setbeamertemplate{itemize items}[circle]
 \makeatletter
-% Keep author-year citations linked across line breaks.
-\def\hyper@natlinkbreak#1#2{\hyper@linkend#1\hyper@linkstart{cite}{cite.#2}}
 \xpatchcmd{\itemize}
     {\def\makelabel}
     {\ifnum\@itemdepth=1\relax\setlength\itemsep{1.6ex}\else\setlength\itemsep{0.4ex}\fi\def\makelabel}
