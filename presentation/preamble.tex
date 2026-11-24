@@ -17,7 +17,7 @@
 
 % Typography and slide margins.
 \usefonttheme{serif}
-\setbeamersize{text margin left=14mm,text margin right=14mm}
+\setbeamersize{text margin left=10mm,text margin right=10mm}
 
 \setbeamerfont{title}{size=\Huge,series=\bfseries}
 \setbeamerfont{subtitle}{size=\large,series=\mdseries}
@@ -29,9 +29,12 @@
 \setbeamerfont{caption name}{series=\bfseries}
 \setbeamerfont{footline}{size=\fontsize{6}{7}\selectfont}
 \setbeamerfont{footnote}{size=\tiny}
-\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamerfont{itemize/enumerate body}{parent=slide body}
+\setbeamerfont{itemize/enumerate subbody}{size={},parent=slide body}
 \setbeamerfont{section in toc}{size=\normalsize,series=\bfseries}
 \setbeamerfont{subsection in toc}{size=\small}
+\setbeamerfont{slide body}{size={\fontsize{9pt}{11pt}}}
+\setbeamerfont{table body}{size={\fontsize{7pt}{9pt}}}
 
 % Shared palette: off-white, soft black, and blue accents.
 \definecolor{offwhite}{HTML}{F8F8F8}

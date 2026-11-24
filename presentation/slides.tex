@@ -61,32 +61,20 @@
 \newsavebox{\presentationimagebox}
 \newlength{\presentationimagemaxwidth}
 \newcommand{\presentationimage}[3]{%
-    \begingroup
-    \sbox{\presentationimagebox}{\includegraphics[height=#2]{#1}}%
-    \setlength{\presentationimagemaxwidth}{#3}%
-    \ifdim\wd\presentationimagebox>\presentationimagemaxwidth
-        \begin{tikzpicture}[baseline=0pt]
-            \clip[use as bounding box] (-.5\presentationimagemaxwidth,0)
-                rectangle (.5\presentationimagemaxwidth,#2);
-            \node[anchor=south,inner sep=0pt,outer sep=0pt] at (0,0) {\usebox{\presentationimagebox}};
-        \end{tikzpicture}%
-    \else
-        \usebox{\presentationimagebox}%
-    \fi
-    \endgroup
+    \includegraphics[width=#3,height=#2,keepaspectratio]{#1}%
 }
 
 % Bullet list beside an image.
 \NewDocumentEnvironment{BulletImageSlide}{O{} +b}{%
     \slideframe{height=4.2cm, #1}{%
         \begin{columns}[c,onlytextwidth]
-            \begin{column}{0.40\textwidth}
+            \begin{column}{0.50\textwidth}
                 \begin{itemize}#2\end{itemize}
             \end{column}
-            \begin{column}{0.54\textwidth}
+            \begin{column}{0.46\textwidth}
                 \begin{figure}
                     \centering
-                    \presentationimage{\slideimage}{\slideheight}{\linewidth}
+                    \includegraphics[width=\linewidth,height=\slideheight,keepaspectratio]{\slideimage}
                     \caption{\slidecaption}
                     \showslidesource{\slidesource}
                 \end{figure}
@@ -183,7 +171,7 @@
     \slideframe{#1}{%
         \begin{table}\centering
             \caption{\slidecaption}
-            #2
+            {\usebeamerfont{table body}#2\par}
             \showslidesource{\slidesource}
         \end{table}
     }%
@@ -213,5 +201,5 @@
 
 % A slide with freely formatted formulas and legends.
 \NewDocumentEnvironment{FormulaSlide}{O{} +b}{%
-    \slideframe{#1}{#2}%
+    \slideframe{#1}{{\usebeamerfont{slide body}#2\par}}%
 }{}
