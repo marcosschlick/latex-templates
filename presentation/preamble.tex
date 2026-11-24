@@ -14,8 +14,39 @@
 \usepackage{tabularx}
 \usepackage{subcaption}
 \usepackage[backend=biber,style=authoryear,natbib=true,
-    maxcitenames=2,mincitenames=1,uniquelist=false]{biblatex}
+    maxcitenames=2,mincitenames=1,uniquelist=false,
+    giveninits=true,uniquename=init]{biblatex}
 \addbibresource{references.bib}
+
+% Normalize DOI links and use supplied conference acronyms for the slide list.
+\DeclareSourcemap{\maps[datatype=bibtex]{
+    \map{\step[fieldsource=doi, match=\regexp{(?i)^https?://(?:dx\.)?doi\.org/}, replace={}]}
+    \map{\pertype{inproceedings}
+        \step[fieldsource=booktitle, match=\regexp{^.+\s\(([A-Z][A-Z0-9-]+)\)$}, replace={$1}]}
+    \map[overwrite]{\pertype{inproceedings}
+        \step[fieldsource=series, match=\regexp{^[A-Z][A-Z0-9/-]*\s*['’]\d{2}(?:/[A-Z0-9-]+['’]\d{2})*$}, final]
+        \step[fieldset=booktitle, origfieldval]}
+}}
+\DeclareFieldFormat*{title}{%
+    \iffieldundef{doi}
+        {\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}}
+        {\href{https://doi.org/\thefield{doi}}{#1}}}
+% Each slide reference has one source: journal, proceedings, or publisher.
+\DeclareBibliographyDriver{slide reference}{%
+    \printnames[sortname]{labelname}%
+    \setunit{\addspace}\printtext[parens]{\printlabeldateextra}%
+    \newunit\usebibmacro{title}%
+    \newunit
+    \iffieldundef{journaltitle}
+        {\iffieldundef{booktitle}
+            {\iffieldundef{eventtitle}{\printlist{publisher}}{\printfield[booktitle]{eventtitle}}}
+            {\printfield{booktitle}}}
+        {\iffieldundef{shortjournal}
+            {\printfield{journaltitle}}
+            {\printfield[journaltitle]{shortjournal}}}%
+    \usebibmacro{finentry}}
+\newcommand*{\useslidereference}[1]{\DeclareBibliographyAlias{#1}{slide reference}}
+\forcsvlist{\useslidereference}{article,book,booklet,collection,inbook,incollection,inproceedings,dataset,manual,misc,online,patent,periodical,proceedings,report,thesis,unpublished}
 
 % \cite uses brackets; \citep and \citet use the parenthetical and textual forms.
 \DeclareDelimFormat[cite]{nameyeardelim}{\addspace}
@@ -46,6 +77,8 @@
 \setbeamerfont{subsection in toc}{size=\small}
 \setbeamerfont{slide body}{size={\fontsize{9pt}{11pt}}}
 \setbeamerfont{table body}{size={\fontsize{7pt}{9pt}}}
+\renewcommand*{\bibfont}{\fontsize{7pt}{9pt}\selectfont}
+\setbeamertemplate{bibliography item}{}
 
 % Shared palette: off-white, soft black, and blue accents.
 \definecolor{offwhite}{HTML}{F8F8F8}
