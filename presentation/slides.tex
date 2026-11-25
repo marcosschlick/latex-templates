@@ -95,7 +95,8 @@
 \NewDocumentCommand{\ContentsSlide}{O{}}{%
     \begingroup
     \slidesetup{#1}%
-    \begin{frame}{\contentsname}{\slidesubtitle}
+    \setbeamertemplate{frametitle continuation}[from second]
+    \begin{frame}[allowframebreaks]{\contentsname}{\slidesubtitle}
         \tableofcontents[subsectionstyle=show]
         \note{\slidenote}
     \end{frame}

@@ -73,8 +73,8 @@
 \setbeamerfont{footnote}{size=\tiny}
 \setbeamerfont{itemize/enumerate body}{parent=slide body}
 \setbeamerfont{itemize/enumerate subbody}{size={},parent=slide body}
-\setbeamerfont{section in toc}{size=\normalsize,series=\bfseries}
-\setbeamerfont{subsection in toc}{size=\small}
+\setbeamerfont{section in toc}{size=\footnotesize,series=\bfseries}
+\setbeamerfont{subsection in toc}{size=\scriptsize}
 \setbeamerfont{slide body}{size={\fontsize{9pt}{11pt}}}
 \setbeamerfont{table body}{size={\fontsize{7pt}{9pt}}}
 \renewcommand*{\bibfont}{\fontsize{7pt}{9pt}\selectfont}
@@ -166,6 +166,10 @@
 \patchcmd{\beamer@subsubsection}
     {{#2}{\the\c@page}}{{#2\tocslidenumber}{\the\c@page}}
     {}{\PackageError{presentation}{Could not patch subsubsection entries}{Check the installed Beamer version.}}
+\patchcmd{\beamer@sectionintoc}
+    {\vfill}
+    {\ifnum#1>1\goodbreak\vskip0.2em\fi}
+    {}{\PackageError{presentation}{Could not patch section toc spacing}{Check the installed Beamer version.}}
 \makeatother
 
 % Captions, navigation, and slide layout.
@@ -175,16 +179,20 @@
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}[period]
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{section in toc}[sections numbered]
-\setbeamertemplate{subsection in toc}{
-    \leavevmode\leftskip=3em
-    \rlap{\hskip-1.8em\inserttocsectionnumber.\inserttocsubsectionnumber}
-    \inserttocsubsection\par\vskip0.3em
+\setbeamertemplate{section in toc}{%
+    \leavevmode\leftskip=1.2em
+    \rlap{\hskip-1.2em\inserttocsectionnumber.}%
+    \inserttocsection\par\nopagebreak
 }
-\setbeamertemplate{subsubsection in toc}{
+\setbeamertemplate{subsection in toc}{%
+    \leavevmode\leftskip=3em
+    \rlap{\hskip-1.8em\inserttocsectionnumber.\inserttocsubsectionnumber}%
+    \inserttocsubsection\par\nopagebreak
+}
+\setbeamertemplate{subsubsection in toc}{%
     \leavevmode\leftskip=5em
-    \rlap{\hskip-2.8em\inserttocsectionnumber.\inserttocsubsectionnumber.\inserttocsubsubsectionnumber}
-    \inserttocsubsubsection\par
+    \rlap{\hskip-2.8em\inserttocsectionnumber.\inserttocsubsectionnumber.\inserttocsubsubsectionnumber}%
+    \inserttocsubsubsection\par\nopagebreak
 }
 
 \newsavebox{\presentationtitlebox}
