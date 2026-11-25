@@ -228,9 +228,26 @@
         \fi
     \fi
 }{}
+% Track when a slide heading comes directly from the current subsection.
+\newif\ifpresentationtitlesubsection
+\BeforeBeginEnvironment{frame}{\global\presentationtitlesubsectionfalse}
+
+\newcommand{\presentationfootlinecontext}{%
+    \ifx\insertsectionhead\empty\else
+        \textcolor{presentationtext!60}{%
+            \insertsectionhead
+            \ifx\insertsubsectionhead\empty\else
+                \ifpresentationtitlesubsection\else
+                    \ --\ \insertsubsectionhead
+                \fi
+            \fi
+        }%
+    \fi
+}
+
 \setbeamertemplate{footline}{
     \usebeamerfont{footline}\usebeamercolor[fg]{page number in head/foot}
-    \hbox to \paperwidth{\hskip14mm\strut\hfill\insertframenumber{} / \inserttotalframenumber\hskip14mm}
+    \hbox to \paperwidth{\hskip14mm\strut\presentationfootlinecontext\hfill\insertframenumber{} / \inserttotalframenumber\hskip14mm}
     \vskip2ex
 }
 
