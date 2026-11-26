@@ -95,8 +95,9 @@
 \NewDocumentCommand{\ContentsSlide}{O{}}{%
     \begingroup
     \slidesetup{#1}%
+    \setbeamertemplate{footline}{}
     \setbeamertemplate{frametitle continuation}[from second]
-    \begin{frame}[allowframebreaks]{\contentsname}{\slidesubtitle}
+    \begin{frame}[allowframebreaks,noframenumbering]{\contentsname}{\slidesubtitle}
         \tableofcontents[subsectionstyle=show]
         \note{\slidenote}
     \end{frame}
@@ -198,4 +199,15 @@
 % A slide with freely formatted formulas and legends.
 \NewDocumentEnvironment{FormulaSlide}{O{} +b}{%
     \slideframe{#1}{{\usebeamerfont{slide body}#2\par}}%
+}{}
+
+% Closing acknowledgments slide outside the table of contents and page count.
+\NewDocumentEnvironment{AcknowledgmentsSlide}{O{} +b}{%
+    \slidesetup{title=\acknowledgmentslabel, #1}%
+    \begin{frame}[plain,noframenumbering]
+        \slideheading
+        \centering
+        #2\par
+        \note{\slidenote}
+    \end{frame}%
 }{}
